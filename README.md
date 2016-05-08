@@ -50,7 +50,7 @@ WikiFakt.getRandomArticleTitle().then(function(title) {
 
 ### Preloading
 
-Getting facts requires making two HTTP GET requests _(one to get the random Wikipedia article, and a second to the Wikipedia api to get the content)_. Because of this, WikiFakt, by default, will preload facts. The first call to `getRandomFact` will actually fetch two facts and store the second for later use. Subsequent to `getRandomFact` will immediatly return the preloaded fact without needing to make any HTTP requests. In the background, _after the fact has already been returned_, a new fact will be fetched and preloaded. This will speed up getting facts from the API if you expect to be using it multiple times.
+Getting facts requires making two HTTP GET requests _(one to get the random Wikipedia article, and a second to the Wikipedia api to get the content)_. Because of this, WikiFakt, by default, will preload facts. The first call to `getRandomFact` will actually fetch two facts and store the second for later use. Subsequent calls to `getRandomFact` will immediatly return the preloaded fact without needing to make any HTTP requests. In the background, _after the fact has already been returned_, a new fact will be fetched and preloaded. This will speed up getting facts from the API if you expect to be using it multiple times.
 
 Preloading can be disabled with
 
