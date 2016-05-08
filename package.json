@@ -1,8 +1,8 @@
 {
-  "name": "wiki-facts",
+  "name": "WikiFakts",
   "version": "0.1.1",
   "description": "Get random facts from Wikipedia",
-  "main": "lib/library.js",
+  "main": "lib/wikifakt.js",
   "scripts": {
     "build": "webpack --mode=build",
     "dev": "webpack --progress --colors --watch --mode=dev",
@@ -26,23 +26,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/krasimir/webpack-library-starter.git"
+    "url": "https://github.com/coffee-cup/WikiFakts.git"
   },
   "keywords": [
-    "webpack",
-    "es6",
-    "starter",
-    "library",
-    "universal",
-    "umd",
-    "commonjs"
+    "random",
+    "fact",
+    "random fact",
+    "wikipedia",
+    "library"
   ],
-  "author": "Krasimir Tsonev",
+  "author": "Jake Runzer",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/krasimir/webpack-library-starter/issues"
+    "url": "https://github.com/coffee-cup/WikiFakts/issues"
   },
-  "homepage": "https://github.com/krasimir/webpack-library-starter",
+  "homepage": "https://github.com/coffee-cup/WikiFakts",
   "dependencies": {
     "bluebird": "^3.3.5",
     "cheerio": "^0.20.0",
