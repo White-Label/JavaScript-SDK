@@ -7,13 +7,22 @@ const WIKI_API = 'https://en.wikipedia.org/w/api.php?format=json&action=query&pr
 
 export default {
     factLengthLimit: 200,
+    preload: true,
+    preloadedFact: '',
 
-    getRandomFact: function() {
+    getRandomFact: function(preloading = false) {
         return new Promise((resolve, reject) => {
+            let sentFact = false;
+            if (this.preload && this.preloadedFact !== '') {
+                sentFact = true;
+                resolve(this.preloadedFact);
+                this.preloadedFact = '';
+            }
+
             this.getRandomRandomArticleTitle().then((articleTitle) => {
                 let titleQuery = articleTitle.split(' ').join('%20');
                 request(WIKI_API + titleQuery, (error, response, body) => {
-                    if (!error && response.statusCode === 200) {
+                    if (!error && response.statusCode === 200 && body !== '') {
                         let json = JSON.parse(body);
                         let keys = Object.keys(json.query.pages);
                         if (keys.length === 0) {
@@ -22,7 +31,9 @@ export default {
                             let page = json.query.pages[keys[0]];
                             let fact = page.extract;
                             if (!fact || fact === '') {
-                                return this.getRandomFact();
+                                this.getRandomFact(preloading).then((newFact) => {
+                                    resolve(newFact);
+                                });
                             } else {
                                 if (fact.length > this.factLengthLimit) {
                                     let factSplits = fact.split('.');
@@ -31,11 +42,33 @@ export default {
                                         fact += factSplits[1] + '.';
                                     }
                                 }
-                                resolve(fact);
+
+                                // already returned a fact
+                                // save new fact in preload
+                                if (sentFact) {
+                                    this.preloadedFact = fact;
+                                } else {
+                                    resolve(fact);
+
+                                    // if we want to preload a fact for next time
+                                    // and we arent currently preloading one
+                                    // then get a new fact and cache it in preloadedFact field
+                                    if (!preloading && this.preload && this.preloadedFact === '') {
+                                        this.getRandomFact(true).then((newFact) => {
+                                            this.preloadedFact = newFact;
+                                        });
+                                    }
+                                }
                             }
                         }
                     } else {
-                        reject(error);
+                        if (!sentFact) {
+                            // there was an error fetching from wikipedia api
+                            // just try again
+                            this.getRandomFact(preloading).then((fact) => {
+                                resolve(fact);
+                            });
+                        }
                     }
                 });
             });

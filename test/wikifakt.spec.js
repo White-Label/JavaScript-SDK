@@ -9,7 +9,7 @@ const expect = chai.expect;
 
 var lib;
 
-describe('WikiFakts', function() {
+describe('WikiFakts getting article titles and facts', function() {
     this.timeout(10000);
 
     it('Should give me random title names', function(done) {
@@ -35,11 +35,44 @@ describe('WikiFakts', function() {
 
     it('Should give me a random fact', function(done) {
         WikiFakt.getRandomFact().then(function(fact) {
-            console.log(fact);
+            expect(fact).to.not.be.null;
+            expect(fact).to.not.be.equal('');
 
+            done();
+        });
+    });
+});
+
+describe('WikiFakts preloading', function() {
+    this.timeout(10000);
+
+    it('Should preload facts', function(done) {
+        WikiFakt.preload = true;
+        WikiFakt.preloadedFact = '';
+
+        expect(WikiFakt.preload).to.be.true;
+        expect(WikiFakt.preloadedFact).to.be.equal('');
+
+        WikiFakt.getRandomFact().then(function(fact) {
             expect(fact).to.not.be.null;
 
-            expect(fact).to.not.be.equal('');
+            // wait for preloaded fact to load
+            setTimeout(() => {
+                expect(WikiFakt.preloadedFact).to.not.be.equal('');
+
+                done();
+            }, 2000);
+        });
+    });
+
+    it('Should use preloaded fact', function(done) {
+        var testFact = 'Fact';
+
+        WikiFakt.preload = true;
+        WikiFakt.preloadedFact = testFact;
+
+        WikiFakt.getRandomFact().then(function(fact) {
+            expect(fact).to.be.equal(testFact);
 
             done();
         });
