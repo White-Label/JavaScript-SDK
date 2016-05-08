@@ -26,7 +26,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/coffee-cup/WikiFakts.git"
+    "url": "https://github.com/coffee-cup/wikifakt.git"
   },
   "keywords": [
     "random",
@@ -39,9 +39,9 @@
   "author": "Jake Runzer",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/coffee-cup/WikiFakts/issues"
+    "url": "https://github.com/coffee-cup/wikifakt/issues"
   },
-  "homepage": "https://github.com/coffee-cup/WikiFakts",
+  "homepage": "https://github.com/coffee-cup/wikifakt",
   "dependencies": {
     "bluebird": "^3.3.5",
     "cheerio": "^0.20.0",
