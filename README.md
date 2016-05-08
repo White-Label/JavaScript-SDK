@@ -1,5 +1,7 @@
 # wikifakt
 
+[![Build Status](https://drone.io/github.com/coffee-cup/wikifakt/status.png)](https://drone.io/github.com/coffee-cup/wikifakt/latest)
+
 Generate a random fact from [Wikipedia](https://en.wikipedia.org/wiki/Main_Page). All facts will be short, 1-3 sentences long. This api also allows you to get a random Wikipedia article title.
 
 ## Examples
