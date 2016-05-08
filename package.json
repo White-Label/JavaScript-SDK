@@ -1,8 +1,8 @@
 {
-  "name": "WikiFakts",
-  "version": "0.1.1",
+  "name": "wikifakt",
+  "version": "1.0.0",
   "description": "Get random facts from Wikipedia",
-  "main": "lib/wikifakt.js",
+  "main": "lib/wikifakt.min.js",
   "scripts": {
     "build": "webpack --mode=build",
     "dev": "webpack --progress --colors --watch --mode=dev",
@@ -33,7 +33,8 @@
     "fact",
     "random fact",
     "wikipedia",
-    "library"
+    "library",
+    "node"
   ],
   "author": "Jake Runzer",
   "license": "MIT",
