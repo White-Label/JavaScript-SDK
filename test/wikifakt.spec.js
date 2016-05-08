@@ -13,8 +13,8 @@ describe('WikiFakts getting article titles and facts', function() {
     this.timeout(10000);
 
     it('Should give me random title names', function(done) {
-        let title1Promise = WikiFakt.getRandomRandomArticleTitle();
-        let title2Promise = WikiFakt.getRandomRandomArticleTitle();
+        let title1Promise = WikiFakt.getRandomArticleTitle();
+        let title2Promise = WikiFakt.getRandomArticleTitle();
 
         expect(title1Promise).to.not.be.null;
         expect(title2Promise).to.not.be.null;

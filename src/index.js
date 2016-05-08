@@ -19,7 +19,7 @@ export default {
                 this.preloadedFact = '';
             }
 
-            this.getRandomRandomArticleTitle().then((articleTitle) => {
+            this.getRandomArticleTitle().then((articleTitle) => {
                 let titleQuery = articleTitle.split(' ').join('%20');
                 request(WIKI_API + titleQuery, (error, response, body) => {
                     if (!error && response.statusCode === 200 && body !== '') {
@@ -75,7 +75,7 @@ export default {
         });
     },
 
-    getRandomRandomArticleTitle: function() {
+    getRandomArticleTitle: function() {
         return new Promise((resolve, reject) => {
             request(WIKI_RANDOM, (error, response, body) => {
                 if (!error && response.statusCode === 200) {
