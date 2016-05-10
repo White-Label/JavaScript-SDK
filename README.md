@@ -40,7 +40,7 @@ WikiFakt exposes two functions which return promises.
 var WikiFakt = require('wikifakt');
 
 // Get a fact
-WikiFakt.getRandomFact.then(function(fact) {
+WikiFakt.getRandomFact().then(function(fact) {
   console.log(fact);
 });
 
