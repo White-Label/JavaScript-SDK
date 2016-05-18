@@ -1,9 +1,11 @@
 var webpack = require('webpack');
 var UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
+var WebpackNotifierPlugin = require('webpack-notifier');
 var path = require('path');
 var env = require('yargs').argv.mode;
 
-var libraryName = 'wikifakt';
+var libraryName = 'WhiteLabel';
+var source = '/src/index.js';
 
 var plugins = [],
     outputFile;
@@ -15,10 +17,11 @@ if (env === 'build') {
     outputFile = libraryName + '.min.js';
 } else {
     outputFile = libraryName + '.js';
+    plugins.push(new WebpackNotifierPlugin())
 }
 
 var config = {
-    entry: __dirname + '/src/index.js',
+    entry: __dirname + source,
     devtool: 'source-map',
     output: {
         path: __dirname + '/lib',
@@ -27,11 +30,10 @@ var config = {
         libraryTarget: 'umd',
         umdNamedDefine: true
     },
-    externals: {
-        request: 'request',
-        cheerio: 'cheerio',
-        bluebird: 'bluebird'
-    },
+    noParse: [
+        "axios"
+    ],
+    externals: {},
     module: {
         loaders: [{
             test: /(\.jsx|\.js)$/,

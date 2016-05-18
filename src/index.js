@@ -1,91 +1,79 @@
-import request from 'request';
-import cheerio from 'cheerio';
-import Promise from 'bluebird';
+import axios from 'axios';
 
-const WIKI_RANDOM = 'https://en.wikipedia.org/wiki/Special:Random';
-const WIKI_API = 'https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=';
+class WhiteLabelAPI {
+    constructor(clientId) {
+        // Define API endpoints
+        this.BASE_URL = 'http://beta.whitelabel.cool/api';
+        this.COLLECTIONS = '/collections/';
+        this.MIXTAPES = '/mixtapes/';
+        this.TRACKS = '/tracks/';
+        this.RECORD = '/events/plays/';
 
-export default {
-    factLengthLimit: 200,
-    preload: true,
-    preloadedFact: '',
-
-    getRandomFact: function(preloading = false) {
-        return new Promise((resolve, reject) => {
-            let sentFact = false;
-            if (this.preload && this.preloadedFact !== '') {
-                sentFact = true;
-                resolve(this.preloadedFact);
-                this.preloadedFact = '';
-            }
-
-            this.getRandomArticleTitle().then((articleTitle) => {
-                let titleQuery = articleTitle.split(' ').join('%20');
-                request(WIKI_API + titleQuery, (error, response, body) => {
-                    if (!error && response.statusCode === 200 && body !== '') {
-                        let json = JSON.parse(body);
-                        let keys = Object.keys(json.query.pages);
-                        if (keys.length === 0) {
-                            return this.getRandomFact();
-                        } else {
-                            let page = json.query.pages[keys[0]];
-                            let fact = page.extract;
-                            if (!fact || fact === '') {
-                                this.getRandomFact(preloading).then((newFact) => {
-                                    resolve(newFact);
-                                });
-                            } else {
-                                if (fact.length > this.factLengthLimit) {
-                                    let factSplits = fact.split('.');
-                                    fact = factSplits[0] += '.';
-                                    if (fact.length < this.factLengthLimit && factSplits.length > 1) {
-                                        fact += factSplits[1] + '.';
-                                    }
-                                }
-
-                                // already returned a fact
-                                // save new fact in preload
-                                if (sentFact) {
-                                    this.preloadedFact = fact;
-                                } else {
-                                    resolve(fact);
-
-                                    // if we want to preload a fact for next time
-                                    // and we arent currently preloading one
-                                    // then get a new fact and cache it in preloadedFact field
-                                    if (!preloading && this.preload && this.preloadedFact === '') {
-                                        this.getRandomFact(true).then((newFact) => {
-                                            this.preloadedFact = newFact;
-                                        });
-                                    }
-                                }
-                            }
-                        }
-                    } else {
-                        if (!sentFact) {
-                            // there was an error fetching from wikipedia api
-                            // just try again
-                            this.getRandomFact(preloading).then((fact) => {
-                                resolve(fact);
-                            });
-                        }
-                    }
-                });
-            });
+        this.request = axios.create({
+            baseURL: this.BASE_URL,
+            timeout: 2000,
+            headers: {
+                'Accept': 'application/json; version=1.0',
+                'Client': clientId,
+            },
         });
-    },
+    }
 
-    getRandomArticleTitle: function() {
+    makeRequest(path, params = {}, method = 'GET') {
+        if (!path.endsWith('/')) {
+            path += '/';
+        }
+        path = path.split('//').join('/');
         return new Promise((resolve, reject) => {
-            request(WIKI_RANDOM, (error, response, body) => {
-                if (!error && response.statusCode === 200) {
-                    let $ = cheerio.load(body);
-                    let articleTitle = $('#firstHeading').text();
-                    resolve(articleTitle);
+            this.request.get(path, params).then(function(response) {
+                if (response.status === 200) {
+                    resolve(response.data);
                 } else {
-                    reject(error);
+                    reject('Status code: ' + response.status);
                 }
+            }).catch(function(error) {
+                reject(error);
             });
         });
     }
-};
+
+    getAllCollections(page = 1) {
+        return this.makeRequest(this.COLLECTIONS, {
+            page,
+        });
+    }
+
+    getCollection(collection, page = 1) {
+        return this.makeRequest(this.COLLECTIONS + collection, {
+            page,
+        });
+    }
+
+    getCollectionMixtapes(collection, page = 1) {
+        return this.makeRequest(this.COLLECTIONS + collection + this.MIXTAPES, {
+            page,
+        });
+    }
+
+    getMixtape(mixtape, page = 1) {
+        return this.makeRequest(this.MIXTAPES + mixtape, {
+            page,
+        });
+    }
+
+    getMixtapeTracks(mixtape, page = 1) {
+        return this.makeRequest(this.MIXTAPES + mixtape + this.TRACKS, {
+            page,
+        });
+    }
+
+    getTrack(track) {
+        return this.makeRequest(this.TRACKS + track);
+    }
+
+    recordPlay(track) {
+
+    }
+}
+
+export default WhiteLabelAPI;
