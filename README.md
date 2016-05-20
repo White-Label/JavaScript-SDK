@@ -83,4 +83,4 @@ options = {
 
 ### `recordPlay(track)`
 
-**[API endpoint**](http://whitelabel.cool/docs/api/reference/#record-a-play-event)
+[**API endpoint**](http://whitelabel.cool/docs/api/reference/#record-a-play-event)
