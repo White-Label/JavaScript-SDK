@@ -29,10 +29,12 @@
     var MIXTAPE = 'noon-186';
     var TRACK = 'gallant-episode';
 
-    promiseTest('All Collections', wl.getAllCollections({all: true}));
+    promiseTest('All Collections', wl.getAllCollections());
     promiseTest('Single Collection', wl.getCollection(COLLECTION));
+    promiseTest('All Mixtapes', wl.getAllMixtapes({all: true, results: false}));
     promiseTest('Collection Mixtapes', wl.getCollectionMixtapes(COLLECTION, {all: true, results: true}));
     promiseTest('Single Mixtape', wl.getMixtape(MIXTAPE));
+    promiseTest('All Tracks', wl.getAllTracks());
     promiseTest('Mixtape Tracks', wl.getMixtapeTracks(MIXTAPE));
     promiseTest('Single Track', wl.getTrack(TRACK, {}));
 

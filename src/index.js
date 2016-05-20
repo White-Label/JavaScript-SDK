@@ -90,12 +90,20 @@ class WhiteLabelAPI {
         return this.getFetch(this.COLLECTIONS + collection, options);
     }
 
+    getAllMixtapes(options) {
+        return this.getFetch(this.MIXTAPES, options);
+    }
+
     getCollectionMixtapes(collection, options) {
         return this.getFetch(this.COLLECTIONS + collection + this.MIXTAPES, options);
     }
 
     getMixtape(mixtape, options) {
         return this.getFetch(this.MIXTAPES + mixtape, options);
+    }
+
+    getAllTracks(options) {
+        return this.getFetch(this.TRACKS, options);
     }
 
     getMixtapeTracks(mixtape, options) {
