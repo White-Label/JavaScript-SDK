@@ -36,7 +36,7 @@ class WhiteLabelAPI {
             },
         };
 
-        // Throws an error the request was unsuccessful
+        // Throws an error if the request was unsuccessful
         // The error can be caught in the .catch of a Promise
         const checkSuccess = function(response) {
             if (response.status !== 200) {

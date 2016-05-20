@@ -24,8 +24,8 @@ To start contribute to this repository please follow these steps
 2. Navigate to cloned directory. `cd White-Label-JS`
 4. Install dependencies. `npm install`
 5. Start the development server which watches the source directory. `npm run dev`
-6. In a new terminal tab start the testing server. This servers the current directory which is used for testing the library in the browser. `npm run sandbox`
-7. Navigate to [localhost:8080](http://localhost:8080) and open the developer console. You should see the results from the library.
+6. In a new terminal tab start the testing server. This serves the current directory which is used for testing the library in the browser. `npm run sandbox`
+7. Navigate to [localhost:8080/public](http://localhost:8080/public) and open the developer console. You should see the results from the library.
 8. Run `npm run build` to create a minified file which is used for production. This can be found at `lib/WhiteLabel.min.js`.
 
 All source files are in `src/` and generated JavaScript files to be used in the browser are in `lib/`. The source built with [Webpack](https://webpack.github.io/) and uses mutliple [ES6](https://github.com/lukehoban/es6features) features as well as [ES7 Async/Await](http://rossboucher.com/await).
