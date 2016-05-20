@@ -1,61 +1,72 @@
-# wikifakt
+# WhiteLabel.js
 
-[![Build Status](https://drone.io/github.com/coffee-cup/wikifakt/status.png)](https://drone.io/github.com/coffee-cup/wikifakt/latest)
-
-Generate a random fact from [Wikipedia](https://en.wikipedia.org/wiki/Main_Page). All facts will be short, 1-3 sentences long. This api also allows you to get a random Wikipedia article title.
-
-## Examples
-
-#### Random facts
-
-- Fermana Football Club is an Italian association football club, based in Fermo, Marche. It currently plays in Serie D.
-- James Anthony Piersall (born November 14, 1929) is an American former baseball center fielder who played 17 seasons in Major League Baseball (MLB) for five teams, from 1950 through 1967. Piersall is best known for his well-publicized battle with bipolar disorder that became the subject of the book and movie Fear Strikes Out.
-- Hypercompe eridanus is a moth of the Arctiidae family. It is found in Colombia, Surinam and French Guiana.
-- Israel was represented in the Eurovision by David D'Or who sang the bilingual English / Hebrew song "Leha'amin" (Hebrew script: להאמין; English translation: "To Believe")
-- Charles Lemercier de Longpre, baron d'Haussez (20 October 1778, Neufchâtel-en-Bray (Normandy) – 10 November 1854, Saint-Saëns (Seine-Maritime)) was a French politician and minister.
-- Zalesie [zaˈlɛɕɛ] is a village in the administrative district of Gmina Wąsosz, within Grajewo County, Podlaskie Voivodeship, in north-eastern Poland. It lies approximately 7 kilometres (4 mi) east of Wąsosz, 14 km (9 mi) south of Grajewo, and 68 km (42 mi) north-west of the regional capital Białystok.
-
-#### Random article titles
-
-- Boxing News
-- National Stadium (Palau)
-- Snood (anatomy)
-- Humane Order of African Redemption
-- David Rankin (cricketer)
-
-## Installation
-
-```
-npm i --save wikifakt
-```
+Create a music platform on the web with WhiteLabel.js
 
 ## Usage
 
-WikiFakt exposes two functions which return promises.
+Include this script tag somewhere on the page.
 
-- `getRandomFact`
-- `getRandomRandomArticleTitle`
-
-```javascript
-var WikiFakt = require('wikifakt');
-
-// Get a fact
-WikiFakt.getRandomFact().then(function(fact) {
-  console.log(fact);
-});
-
-// Get an article title
-WikiFakt.getRandomArticleTitle().then(function(title) {
-  console.log(title);
-});
+```html
+<script src="{TBD}/WhiteLabel.min.js"></script>
 ```
 
-### Preloading
-
-Getting facts requires making two HTTP GET requests _(one to get the random Wikipedia article, and a second to the Wikipedia api to get the content)_. Because of this, WikiFakt, by default, will preload facts. The first call to `getRandomFact` will actually fetch two facts and store the second for later use. Subsequent calls to `getRandomFact` will immediatly return the preloaded fact without needing to make any HTTP requests. In the background, _after the fact has already been returned_, a new fact will be fetched and preloaded. This will speed up getting facts from the API if you expect to be using it multiple times.
-
-Preloading can be disabled with
+This will expose the global class `WhiteLabel`. After the page has been loaded, initialize an instance providing your WhiteLabel **client id**.
 
 ```javascript
-WikiFakt.preload = false;
+var wl = new WhiteLabel(CLIENT_ID);
 ```
+
+## Documentation
+
+This library returns [Promise's](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) for all of its methods. They will resolve when the request is successfully and reject with any errors.
+
+All requests take in an optional options object as the last parameter. Options has the following defaults, which is overridden when an object is provided.
+
+```javascript
+options = {
+    page: 1,
+    all: false,
+    results: false
+}
+```
+
+- **page**: The page to request when fetching from White Label API. Results are paginated every 20 records
+- **all**: Whether or not to recursively follow the next url in the response. If `page=1` and `all=true` then method will resolve with an array of all results from the collection.
+- **results**: If true, the method will resolve with `result.results` _(if exists)_ from the White Label API. This is useful if you just want the array of collections when requesting your Collections, Mixtapes, or Tracks.
+    + If `all=true` and `results=true`, the method will return a flat array of all collections from the requests endpoint.
+
+### `getAllCollections(options)`
+
+[**API endpoint**](http://whitelabel.cool/docs/api/reference/#get-information-about-multiple-collections)
+
+### `getCollection(collection, options)`
+
+**[API endpoint**](http://whitelabel.cool/docs/api/reference/#get-information-about-a-specific-collection)
+
+### `getCollectionMixtapes(collection, options)`
+
+**[API endpoint**](http://whitelabel.cool/docs/api/reference/#get-information-about-multiple-mixtapes)
+
+### `getAllMixtapes(options)`
+
+**[API endpoint**](http://whitelabel.cool/docs/api/reference/#get-information-about-multiple-mixtapes)
+
+### `getMixtape(mixtape, options)`
+
+**[API endpoint**](http://whitelabel.cool/docs/api/reference/#get-information-about-a-specific-mixtape)
+
+### `getMixtapeTracks(mixtape, options)`
+
+**[API endpoint**](http://whitelabel.cool/docs/api/reference/#get-information-about-multiple-tracks)
+
+### `getAllTracks(options)`
+
+**[API endpoint**](http://whitelabel.cool/docs/api/reference/#get-information-about-multiple-tracks)
+
+### `getTrack(track, options)`
+
+**[API endpoint**](http://whitelabel.cool/docs/api/reference/#get-information-about-a-specific-track)
+
+### `recordPlay(track)`
+
+**[API endpoint**](http://whitelabel.cool/docs/api/reference/#record-a-play-event)
