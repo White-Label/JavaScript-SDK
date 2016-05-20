@@ -1,5 +1,5 @@
 {
-  "name": "whitelabel",
+  "name": "white-label-js",
   "version": "1.0.3",
   "description": "Create a music platform on the web with WhiteLabel.js",
   "main": "lib/WhiteLabel.min.js",
