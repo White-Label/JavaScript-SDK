@@ -1,6 +1,6 @@
 {
   "port": 8080,
-  "open": true,
+  "open": false,
   "file": "public/index.html",
   "ignore": "node_modules,src/index.js"
 }
