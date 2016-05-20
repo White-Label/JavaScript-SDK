@@ -10,7 +10,7 @@ Include this script tag somewhere on the page.
 <script src="{TBD}/WhiteLabel.min.js"></script>
 ```
 
-This will expose the global class `WhiteLabel`. After the page has been loaded, initialize an instance providing your WhiteLabel **client id**.
+This will expose the global class `WhiteLabel`. After the page has been loaded, initialize an instance providing your White Label **client id**.
 
 ```javascript
 var wl = new WhiteLabel(CLIENT_ID);
@@ -55,31 +55,31 @@ options = {
 
 ### `getCollection(collection, options)`
 
-**[API endpoint**](http://whitelabel.cool/docs/api/reference/#get-information-about-a-specific-collection)
+[**API endpoint**](http://whitelabel.cool/docs/api/reference/#get-information-about-a-specific-collection)
 
 ### `getCollectionMixtapes(collection, options)`
 
-**[API endpoint**](http://whitelabel.cool/docs/api/reference/#get-information-about-multiple-mixtapes)
+[**API endpoint**](http://whitelabel.cool/docs/api/reference/#get-information-about-multiple-mixtapes)
 
 ### `getAllMixtapes(options)`
 
-**[API endpoint**](http://whitelabel.cool/docs/api/reference/#get-information-about-multiple-mixtapes)
+[**API endpoint**](http://whitelabel.cool/docs/api/reference/#get-information-about-multiple-mixtapes)
 
 ### `getMixtape(mixtape, options)`
 
-**[API endpoint**](http://whitelabel.cool/docs/api/reference/#get-information-about-a-specific-mixtape)
+[**API endpoint**](http://whitelabel.cool/docs/api/reference/#get-information-about-a-specific-mixtape)
 
 ### `getMixtapeTracks(mixtape, options)`
 
-**[API endpoint**](http://whitelabel.cool/docs/api/reference/#get-information-about-multiple-tracks)
+[**API endpoint**](http://whitelabel.cool/docs/api/reference/#get-information-about-multiple-tracks)
 
 ### `getAllTracks(options)`
 
-**[API endpoint**](http://whitelabel.cool/docs/api/reference/#get-information-about-multiple-tracks)
+[**API endpoint**](http://whitelabel.cool/docs/api/reference/#get-information-about-multiple-tracks)
 
 ### `getTrack(track, options)`
 
-**[API endpoint**](http://whitelabel.cool/docs/api/reference/#get-information-about-a-specific-track)
+[**API endpoint**](http://whitelabel.cool/docs/api/reference/#get-information-about-a-specific-track)
 
 ### `recordPlay(track)`
 
