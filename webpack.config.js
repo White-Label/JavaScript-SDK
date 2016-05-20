@@ -1,5 +1,7 @@
 var webpack = require('webpack');
 var UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
+var OccurrenceOrderPlugin = webpack.optimize.OccurrenceOrderPlugin;
+var DedupePlugin = webpack.optimize.DedupePlugin;
 var WebpackNotifierPlugin = require('webpack-notifier');
 var path = require('path');
 var env = require('yargs').argv.mode;
@@ -14,6 +16,8 @@ if (env === 'build') {
     plugins.push(new UglifyJsPlugin({
         minimize: true
     }));
+    plugins.push(new OccurrenceOrderPlugin());
+    plugins.push(new DedupePlugin());
     outputFile = libraryName + '.min.js';
 } else {
     outputFile = libraryName + '.js';
@@ -21,8 +25,8 @@ if (env === 'build') {
 }
 
 var config = {
-    entry: __dirname + source,
-    devtool: 'source-map',
+    entry: ['babel-polyfill', __dirname + source],
+    devtool: env === 'build' ? '' : 'source-map',
     output: {
         path: __dirname + '/lib',
         filename: outputFile,

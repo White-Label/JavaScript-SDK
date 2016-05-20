@@ -19,56 +19,91 @@ class WhiteLabelAPI {
         });
     }
 
-    makeRequest(path, params = {}, method = 'GET') {
-        if (!path.endsWith('/')) {
-            path += '/';
+    normalizePath(path) {
+        return path.split('//').join('/');
+    }
+
+    // ES7 async and await 🔥
+    async getFetch(path, options = {
+        page: 1,
+        all: false,
+        results: false,
+    }) {
+        let results = [];
+        const config = {
+            params: {
+                page: options.page,
+            },
+        };
+
+        // Throws an error the request was unsuccessful
+        // The error can be caught in the .catch of a Promise
+        const checkSuccess = function(response) {
+            if (response.status !== 200) {
+                throw new Error('Status code was ' + response.status);
+            }
+        };
+
+        let response = await this.request.get(this.normalizePath(path + '/'), config);
+        checkSuccess(response);
+
+        response = response.data;
+        results.push(response);
+
+        if (options.all && response.next) {
+            delete config.params.path;
+            while (response && response.next) {
+                response = await this.request.get(response.next, config);
+                checkSuccess(response);
+
+                response = response.data;
+                results.push(response);
+            }
         }
-        path = path.split('//').join('/');
-        return new Promise((resolve, reject) => {
-            this.request.get(path, params).then(function(response) {
-                if (response.status === 200) {
-                    resolve(response.data);
-                } else {
-                    reject('Status code: ' + response.status);
-                }
-            }).catch(function(error) {
-                reject(error);
-            });
-        });
+
+        let returnResults = !options.all ? results[0] : results;
+
+        // if options.results is true, we will return a flat array of all
+        // results arrays from white label api.
+        // This is useful if you set options.all and (for example) fetch all
+        // of a collection mixtapes.
+        if (options.results) {
+            if (options.all) {
+                let flattened = false;
+                const mappedResults = returnResults.map(function(obj) {
+                    flattened = (obj.results !== undefined && obj.results !== null);
+                    return obj.results ? obj.results : obj;
+                });
+                returnResults = flattened ? [].concat(...mappedResults) : mappedResults;
+            } else {
+                returnResults = returnResults.results ? returnResults.results : returnResults;
+            }
+        }
+        return returnResults;
     }
 
-    getAllCollections(page = 1) {
-        return this.makeRequest(this.COLLECTIONS, {
-            page,
-        });
+    getAllCollections(options) {
+        return this.getFetch(this.COLLECTIONS, options);
     }
 
-    getCollection(collection, page = 1) {
-        return this.makeRequest(this.COLLECTIONS + collection, {
-            page,
-        });
+    getCollection(collection, options) {
+        return this.getFetch(this.COLLECTIONS + collection, options);
     }
 
-    getCollectionMixtapes(collection, page = 1) {
-        return this.makeRequest(this.COLLECTIONS + collection + this.MIXTAPES, {
-            page,
-        });
+    getCollectionMixtapes(collection, options) {
+        return this.getFetch(this.COLLECTIONS + collection + this.MIXTAPES, options);
     }
 
-    getMixtape(mixtape, page = 1) {
-        return this.makeRequest(this.MIXTAPES + mixtape, {
-            page,
-        });
+    getMixtape(mixtape, options) {
+        return this.getFetch(this.MIXTAPES + mixtape, options);
     }
 
-    getMixtapeTracks(mixtape, page = 1) {
-        return this.makeRequest(this.MIXTAPES + mixtape + this.TRACKS, {
-            page,
-        });
+    getMixtapeTracks(mixtape, options) {
+        return this.getFetch(this.MIXTAPES + mixtape + this.TRACKS, options);
     }
 
-    getTrack(track) {
-        return this.makeRequest(this.TRACKS + track);
+    getTrack(track, options) {
+        return this.getFetch(this.TRACKS + track, options);
     }
 
     recordPlay(track) {

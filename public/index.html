@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>White Label API</title>
+    <script src="../lib/WhiteLabel.js"></script>
+</head>
+<body>
+    <h1>White Label API Test</h1>
+    <div id="content"></div>
+
+    <script type="text/javascript">
+
+    var CLIENT_ID = 'TSaAKdrGCkWF8erxzjc7k7wJmj0UmYPOAx2MLdPX';
+
+    var wl = new WhiteLabel(CLIENT_ID);
+
+    var promiseTest = function(name, promise) {
+        var message = '\n' + name;
+        promise.then(function(results) {
+            console.log(message);
+            console.log(results);
+        }).catch(function(error) {
+            console.log(message + ' --- ERROR ---');
+            console.log(error);
+        });
+    }
+
+    var COLLECTION = 'weekly';
+    var MIXTAPE = 'noon-186';
+    var TRACK = 'gallant-episode';
+
+    promiseTest('All Collections', wl.getAllCollections({all: true}));
+    promiseTest('Single Collection', wl.getCollection(COLLECTION));
+    promiseTest('Collection Mixtapes', wl.getCollectionMixtapes(COLLECTION, {all: true, results: true}));
+    promiseTest('Single Mixtape', wl.getMixtape(MIXTAPE));
+    promiseTest('Mixtape Tracks', wl.getMixtapeTracks(MIXTAPE));
+    promiseTest('Single Track', wl.getTrack(TRACK, {}));
+
+    </script>
+</body>
+</html>
