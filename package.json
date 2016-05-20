@@ -1,14 +1,12 @@
 {
-  "name": "noonapi",
+  "name": "whitelabel",
   "version": "1.0.3",
-  "description": "Get random facts from Wikipedia",
-  "main": "lib/noonapi.min.js",
+  "description": "Create a music platform on the web with WhiteLabel.js",
+  "main": "lib/WhiteLabel.min.js",
   "scripts": {
     "build": "webpack --mode=build",
     "dev": "webpack --progress --colors --watch --mode=dev",
-    "sandbox": "live-server",
-    "test-dev": "mocha --compilers js:babel-core/register --colors -w ./test/*.spec.js",
-    "test": "mocha --compilers js:babel-core/register --colors ./test/*.spec.js"
+    "sandbox": "live-server"
   },
   "devDependencies": {
     "babel": "6.3.13",
@@ -31,18 +29,26 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/coffee-cup/wikifakt.git"
+    "url": "https://github.com/NoonPacific/White-Label-JS.git"
   },
   "keywords": [
     "library",
-    "node"
+    "browser",
+    "npm",
+    "noon",
+    "pacific",
+    "NoonPacific",
+    "white",
+    "label",
+    "WhiteLabel",
+    "WhiteLabel.js"
   ],
   "author": "Jake Runzer",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/coffee-cup/wikifakt/issues"
+    "url": "https://github.com/NoonPacific/White-Label-JS/issues"
   },
-  "homepage": "https://github.com/coffee-cup/wikifakt",
+  "homepage": "https://github.com/NoonPacific/White-Label-JS",
   "dependencies": {
     "axios": "^0.11.0",
     "babel-plugin-syntax-async-functions": "^6.8.0",
