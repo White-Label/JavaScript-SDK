@@ -44,7 +44,7 @@ options = {
 }
 ```
 
-- **page**: The page to request when fetching from White Label API. Results are paginated every 20 records
+- **page**: The page to request when fetching from White Label API. Results are paginated every 20 records.
 - **all**: Whether or not to recursively follow the next url in the response. If `page=1` and `all=true` then method will resolve with an array of all results from the collection.
 - **results**: If true, the method will resolve with `result.results` _(if exists)_ from the White Label API. This is useful if you just want the array of collections when requesting your Collections, Mixtapes, or Tracks.
     + If `all=true` and `results=true`, the method will return a flat array of all collections from the requests endpoint.
