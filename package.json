@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --mode=build",
     "dev": "webpack --progress --colors --watch --mode=dev",
-    "sandbox": "live-server"
+    "sandbox": "node liveserver.js"
   },
   "devDependencies": {
     "babel": "6.3.13",
