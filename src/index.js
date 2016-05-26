@@ -8,6 +8,11 @@ class WhiteLabelAPI {
         this.MIXTAPES = '/mixtapes/';
         this.TRACKS = '/tracks/';
         this.RECORD = '/events/plays/';
+        this.CLIENT_ID = clientId;
+
+        if (!clientId || clientId === '') {
+            throw new Error('You must provide a valid client id');
+        }
 
         this.request = axios.create({
             baseURL: this.BASE_URL,
@@ -115,7 +120,7 @@ class WhiteLabelAPI {
     }
 
     recordPlay(track) {
-
+        return this.request.post(this.RECORD + track + '/');
     }
 }
 
