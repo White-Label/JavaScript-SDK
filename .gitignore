@@ -152,3 +152,4 @@ node_modules
 play.js
 secrets.js
 public/test_html.html
+stats.json

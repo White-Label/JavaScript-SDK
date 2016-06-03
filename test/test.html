@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Cow tests</title>
+    <link rel="stylesheet" media="all" href="../node_modules/mocha/mocha.css">
+  </head>
+  <body>
+    <div id="mocha"><p><a href=".">Index</a></p></div>
+    <div id="messages"></div>
+    <div id="fixtures"></div>
+    <script src="../node_modules/mocha/mocha.js"></script>
+    <script src="../node_modules/chai/chai.js"></script>
+    <script src="../lib/WhiteLabel.js"></script>
+    <script>mocha.setup('bdd')</script>
+    <script src="whitelabel.spec.js"></script>
+    <script>mocha.run();</script>
+  </body>
+</html>

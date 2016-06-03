@@ -55,6 +55,7 @@ class WhiteLabelAPI {
         response = response.data;
         results.push(response);
 
+        // Follow the next field of response until null
         if (options.all && response.next) {
             delete config.params.path;
             while (response && response.next) {
