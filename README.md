@@ -30,6 +30,10 @@ To start contribute to this repository please follow these steps
 
 All source files are in `src/` and generated JavaScript files to be used in the browser are in `lib/`. The source built with [Webpack](https://webpack.github.io/) and uses mutliple [ES6](https://github.com/lukehoban/es6features) features as well as [ES7 Async/Await](http://rossboucher.com/await).
 
+## Tests
+
+Run tests with `npm test`. All tests are located in `test/` and are run with mocha and tested in phantomjs. `test/test.html` can be opened in the browser to run the tests againt that specific browser.
+
 ## Documentation
 
 This library returns [Promise's](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) for all of its methods. They will resolve when the request is successfully and reject with any errors.
