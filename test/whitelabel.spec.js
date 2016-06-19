@@ -1,7 +1,5 @@
 var expect = chai.expect;
 
-var CLIENT_ID = 'TSaAKdrGCkWF8erxzjc7k7wJmj0UmYPOAx2MLdPX';
-
 var COLLECTION = 'weekly';
 var MIXTAPE = 'noon-186';
 var TRACK = 'gallant-episode';
