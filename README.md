@@ -55,6 +55,8 @@ options = {
 - **results**: If true, the method will resolve with `result.results` _(if exists)_ from the White Label API. This is useful if you just want the array of collections when requesting your Collections, Mixtapes, or Tracks.
     + If `all=true` and `results=true`, the method will return a flat array of all collections from the requests endpoint.
 
+All of the methods use either the collection/mixtape/track `id` or `slug` as parameters.
+
 ### `getAllCollections(options)`
 
 [**API endpoint**](http://whitelabel.cool/docs/api/reference/#get-information-about-multiple-collections)
