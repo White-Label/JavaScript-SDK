@@ -36,6 +36,32 @@ Before running any tests you need to provide your White Label Client ID. Copy `p
 
 Run tests with `npm test`. All tests are located in `test/` and are run with mocha and tested in phantomjs. `test/test.html` can be opened in the browser to run the tests againt that specific browser.
 
+## Examples
+
+Getting array of all Mixtape objects in the collection with slug "collection-slug"
+
+```javascript
+wl.getCollectionMixtapes("collection-slug", {all: true, results: true}).then(function(mixtapes) {
+  // Do something with array of mixtapes
+});
+```
+
+Get array of Track objects for mixtape with slug "mixtape-slug"
+
+```javascript
+wl.getMixtapeTracks("mixtape-slug", {results: true}).then(function(tracks) {
+  // Do something with array of tracks
+});
+```
+
+Get array of first 20 Mixtape _responses_ in the collection with slug "collection-slug". _Note: each item in the array will contain a `count`, `next`, `previous` and `results` field_
+
+```javascript
+wl.getCollectionMixtapes("collection-slug").then(function(mixtapes) {
+  // Do something with array of mixtapes
+});
+```
+
 ## Documentation
 
 This library returns [Promise's](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) for all of its methods. They will resolve when the request is successful and reject with any errors.
