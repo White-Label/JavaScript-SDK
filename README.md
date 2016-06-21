@@ -38,7 +38,7 @@ Run tests with `npm test`. All tests are located in `test/` and are run with moc
 
 ## Documentation
 
-This library returns [Promise's](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) for all of its methods. They will resolve when the request is successfully and reject with any errors.
+This library returns [Promise's](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) for all of its methods. They will resolve when the request is successful and reject with any errors.
 
 All requests take in an optional options object as the last parameter. Options has the following defaults, which is overridden when an object is provided.
 
