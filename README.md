@@ -19,15 +19,16 @@ var wl = new WhiteLabel(CLIENT_ID);
 
 ## Development
 
-To start contribute to this repository please follow these steps
+To start contributing to this repository please follow these steps
 
 1. Clone this repo. `git clone https://github.com/NoonPacific/White-Label-JS.git`
 2. Navigate to cloned directory. `cd White-Label-JS`
 4. Install dependencies. `npm install`
-5. Start the development server which watches the source directory. `npm run dev`
-6. In a new terminal tab start the testing server. This serves the current directory which is used for testing the library in the browser. `npm run sandbox`
-7. Navigate to [localhost:8080/public](http://localhost:8080/public) and open the developer console. You should see the results from the library.
-8. Run `npm run build` to create a minified file which is used for production. This can be found at `lib/WhiteLabel.min.js`.
+5. Copy `public/secrets_example.js` to `public/secrets.js` and fill in your `CLIENT_ID`
+6. Start the development server which watches the source directory. `npm run dev`
+7. In a new terminal tab start the testing server. This serves the current directory which is used for testing the library in the browser. `npm run sandbox`
+8. Navigate to [localhost:8080/public](http://localhost:8080/public) and open the developer console. You should see the results from the library.
+9. Run `npm run build` to create a minified file which is used for production. This can be found at `lib/WhiteLabel.min.js`.
 
 All source files are in `src/` and generated JavaScript files to be used in the browser are in `lib/`. The source built with [Webpack](https://webpack.github.io/) and uses mutliple [ES6](https://github.com/lukehoban/es6features) features as well as [ES7 Async/Await](http://rossboucher.com/await).
 
