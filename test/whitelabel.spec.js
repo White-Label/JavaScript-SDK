@@ -110,7 +110,7 @@ describe('White Label JS', function() {
             });
         });
 
-        it('should return an array for all', function() {
+        it('should return an array of tracks', function() {
             return this.wl.getTrack(TRACK, {all: true}).then(function(track) {
                 notNull(track);
                 expect(track).to.be.length(1);
