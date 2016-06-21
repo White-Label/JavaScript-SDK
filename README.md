@@ -30,7 +30,7 @@ To start contributing to this repository please follow these steps
 8. Navigate to [localhost:8080/public](http://localhost:8080/public) and open the developer console. You should see the results from the library.
 9. Run `npm run build` to create a minified file which is used for production. This can be found at `lib/WhiteLabel.min.js`.
 
-All source files are in `src/` and generated JavaScript files to be used in the browser are in `lib/`. The source built with [Webpack](https://webpack.github.io/) and uses mutliple [ES6](https://github.com/lukehoban/es6features) features as well as [ES7 Async/Await](http://rossboucher.com/await).
+All source files are in `src/` and generated JavaScript files to be used in the browser are in `lib/`. The source is built with [Webpack](https://webpack.github.io/) and uses mutliple [ES6](https://github.com/lukehoban/es6features) features as well as [ES7 Async/Await](http://rossboucher.com/await).
 
 ## Tests
 
