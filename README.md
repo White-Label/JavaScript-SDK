@@ -36,7 +36,7 @@ All source files are in `src/` and generated JavaScript files to be used in the 
 
 Before running any tests you need to provide your White Label Client ID. Copy `public/secrets_example.js` to `public/secrets.js` and fill in your `CLIENT_ID`.
 
-Run tests with `npm test`. All tests are located in `test/` and are run with mocha and tested in phantomjs. `test/test.html` can be opened in the browser to run the tests againt that specific browser.
+Run tests with `npm test`. All tests are located in `test/` and are run with mocha and tested in phantomjs. `test/test.html` can be opened in the browser to run the tests against that specific browser.
 
 ## Examples
 
