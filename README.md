@@ -4,10 +4,11 @@ Create a music platform on the web with WhiteLabel.js
 
 ## Usage
 
+[Download the minified library](https://github.com/NoonPacific/White-Label-JS/blob/master/lib/WhiteLabel.min.js).
 Include this script tag somewhere on the page.
 
 ```html
-<script src="{TBD}/WhiteLabel.min.js"></script>
+<script src="WhiteLabel.min.js"></script>
 ```
 
 This will expose the global class `WhiteLabel`. After the page has been loaded, initialize an instance providing your White Label **client id**.
