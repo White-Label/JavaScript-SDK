@@ -7,7 +7,7 @@
     "build": "webpack --mode=build",
     "dev": "webpack --progress --colors --watch --mode=dev",
     "sandbox": "node liveserver.js",
-    "test": "mocha-phantomjs test/test.html"
+    "test": "mocha-phantomjs --ssl-protocol=any test/test.html"
   },
   "devDependencies": {
     "babel": "6.3.13",

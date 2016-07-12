@@ -3,7 +3,7 @@ import axios from 'axios';
 class WhiteLabelAPI {
     constructor(clientId) {
         // Define API endpoints
-        this.BASE_URL = 'http://beta.whitelabel.cool/api';
+        this.BASE_URL = 'https://beta.whitelabel.cool/api';
         this.COLLECTIONS = '/collections/';
         this.MIXTAPES = '/mixtapes/';
         this.TRACKS = '/tracks/';
