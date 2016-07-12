@@ -4,7 +4,7 @@ Create a music platform on the web with WhiteLabel.js
 
 ## Usage
 
-[Download the minified library](https://raw.githubusercontent.com/NoonPacific/White-Label-JS/master/lib/whiteLabel.min.js?token=AC519cWGezC6k0P0s9zD1glrDnk0rcWWks5XcjTvwA%3D%3D).
+[Download the minified library](https://raw.githubusercontent.com/NoonPacific/White-Label-JS/master/lib/whitelabel.min.js?token=AC519Rk8Ddna52N3zw7kB7zY73G24LVDks5XjamrwA%3D%3D).
 Include this script tag somewhere on the page.
 
 ```html
