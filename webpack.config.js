@@ -18,9 +18,9 @@ if (env === 'build') {
     }));
     plugins.push(new OccurrenceOrderPlugin());
     plugins.push(new DedupePlugin());
-    outputFile = libraryName + '.min.js';
+    outputFile = libraryName.toLowerCase() + '.min.js';
 } else {
-    outputFile = libraryName + '.js';
+    outputFile = libraryName.toLowerCase() + '.js';
     plugins.push(new WebpackNotifierPlugin())
 }
 
