@@ -4,11 +4,11 @@ Create a music platform on the web with WhiteLabel.js
 
 ## Usage
 
-[Download the minified library](https://raw.githubusercontent.com/NoonPacific/White-Label-JS/master/lib/WhiteLabel.min.js?token=AC519cWGezC6k0P0s9zD1glrDnk0rcWWks5XcjTvwA%3D%3D).
+[Download the minified library](https://raw.githubusercontent.com/NoonPacific/White-Label-JS/master/lib/whiteLabel.min.js?token=AC519cWGezC6k0P0s9zD1glrDnk0rcWWks5XcjTvwA%3D%3D).
 Include this script tag somewhere on the page.
 
 ```html
-<script src="WhiteLabel.min.js"></script>
+<script src="whiteLabel.min.js"></script>
 ```
 
 This will expose the global class `WhiteLabel`. After the page has been loaded, initialize an instance providing your White Label **client id**.
@@ -28,7 +28,7 @@ To start contributing to this repository please follow these steps
 6. Start the development server which watches the source directory. `npm run dev`
 7. In a new terminal tab start the testing server. This serves the current directory which is used for testing the library in the browser. `npm run sandbox`
 8. Navigate to [localhost:8080/public](http://localhost:8080/public) and open the developer console. You should see the results from the library.
-9. Run `npm run build` to create a minified file which is used for production. This can be found at `lib/WhiteLabel.min.js`.
+9. Run `npm run build` to create a minified file which is used for production. This can be found at `lib/whiteLabel.min.js`.
 
 All source files are in `src/` and generated JavaScript files to be used in the browser are in `lib/`. The source is built with [Webpack](https://webpack.github.io/) and uses mutliple [ES6](https://github.com/lukehoban/es6features) features as well as [ES7 Async/Await](http://rossboucher.com/await).
 
