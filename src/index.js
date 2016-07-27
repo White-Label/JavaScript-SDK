@@ -1,4 +1,5 @@
 import axios from 'axios';
+import merge from 'merge';
 
 class WhiteLabelAPI {
     constructor(clientId) {
@@ -34,11 +35,11 @@ class WhiteLabelAPI {
         all: false,
         results: false,
     }) {
+        if (!options.filters) options.filters = {};
+
         let results = [];
         const config = {
-            params: {
-                page: options.page,
-            },
+            params: merge({page: options.page}, options.filters)
         };
 
         // Throws an error if the request was unsuccessful
@@ -101,7 +102,12 @@ class WhiteLabelAPI {
     }
 
     getCollectionMixtapes(collection, options) {
-        return this.getFetch(this.COLLECTIONS + collection + this.MIXTAPES, options);
+        options = merge.recursive(options, {
+            filters: {
+                collection: collection
+            }
+        });
+        return this.getFetch(this.MIXTAPES, options);
     }
 
     getMixtape(mixtape, options) {
@@ -113,7 +119,12 @@ class WhiteLabelAPI {
     }
 
     getMixtapeTracks(mixtape, options) {
-        return this.getFetch(this.MIXTAPES + mixtape + this.TRACKS, options);
+        options = merge.recursive(options, {
+            filters: {
+                mixtape: mixtape
+            }
+        });
+        return this.getFetch(this.TRACKS, options);
     }
 
     getTrack(track, options) {
