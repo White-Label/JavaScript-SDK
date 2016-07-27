@@ -16,7 +16,7 @@ class WhiteLabelAPI {
 
         this.request = axios.create({
             baseURL: this.BASE_URL,
-            timeout: 2000,
+            timeout: 10000,
             headers: {
                 'Accept': 'application/json; version=1.0',
                 'Client': clientId,
