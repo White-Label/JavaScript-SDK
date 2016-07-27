@@ -163,6 +163,21 @@ describe('White Label JS', function() {
             );
         });
 
+        it('should filter mixtapes with method', function() {
+            return P.join(
+                this.wl.getAllMixtapes({all: true, results: true, filters: {collection: COLLECTION}}),
+                this.wl.getCollectionMixtapes(COLLECTION, {all: true, results: true}),
+                function(collections1, collections2) {
+                    notNull(collections1);
+                    notNull(collections2);
+
+                    expect(collections1.length).to.be.equal(collections2.length);
+                    expect(collections1[0].slug).to.be.equal(collections2[0].slug);
+                    expect(collections1[collections1.length-1].slug).to.be.equal(collections2[collections2.length-1].slug);
+                }
+            );
+        });
+
         it('should search for single mixtape', function() {
             return this.wl.getAllTracks({all: true, results: true, filters: {search: 'Get Mine Ft. Shakka'}}).then(function(tracks){
                 notNull(tracks);
