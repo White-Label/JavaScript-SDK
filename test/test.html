@@ -9,10 +9,11 @@
     <div id="mocha"><p><a href=".">Index</a></p></div>
     <div id="messages"></div>
     <div id="fixtures"></div>
+    <script src="../node_modules/bluebird/js/browser/bluebird.min.js"></script>
     <script src="../node_modules/mocha/mocha.js"></script>
     <script src="../node_modules/chai/chai.js"></script>
     <script src="../public/secrets.js"></script>
-    <script src="../lib/whiteLabel.min.js"></script>
+    <script src="../lib/whiteLabel.js"></script>
     <script>mocha.setup('bdd')</script>
     <script src="whitelabel.spec.js"></script>
     <script>mocha.run();</script>

@@ -7,14 +7,14 @@ var TRACK = 'gallant-episode';
 var notNull = function(obj) {
     expect(obj).to.not.be.null;
     expect(obj).to.not.be.undefined;
-}
+};
 
 var randomArrIndex = function(arr) {
     return Math.floor(Math.random() * (arr.length - 0 + 1));
-}
+};
 
 describe('White Label JS', function() {
-    this.timeout(10000);
+    this.timeout(40000);
     it('should error with invalid token', function() {
         try {
             var wl = new WhiteLabel();
@@ -119,6 +119,84 @@ describe('White Label JS', function() {
 
         it('should record play', function() {
             return this.wl.recordPlay(TRACK);
+        });
+    });
+
+    describe('White Label Filtering', function() {
+        beforeEach(function() {
+            this.wl = new WhiteLabel(CLIENT_ID);
+        });
+
+        it('should filter collections by ordering', function() {
+            return P.join(
+                this.wl.getAllCollections({results: true, filters: {ordering: '-created'}}),
+                this.wl.getAllCollections({results: true, filters: {ordering: 'created'}}),
+                function(collections1, collections2) {
+                    notNull(collections1);
+                    notNull(collections2);
+
+                    expect(collections1.length).to.be.equal(collections2.length);
+                    expect(collections1[0].slug).to.not.be.equal(collections2[0].slug);
+                }
+            );
+        });
+
+        it('should search for single collection', function() {
+            return this.wl.getAllCollections({results: true, filters: {search: 'weekly'}}).then(function(collections) {
+                notNull(collections);
+
+                expect(collections).to.be.length(1);
+                expect(collections[0].slug).to.be.equal('weekly');
+            });
+        });
+
+        it('should filter mixtapes by collection', function() {
+            return P.join(
+                this.wl.getAllMixtapes({all: true, results: true}),
+                this.wl.getCollectionMixtapes(COLLECTION, {all: true, results: true}),
+                function(mixtapes1, mixtapes2) {
+                    notNull(mixtapes1);
+                    notNull(mixtapes2);
+
+                    expect(mixtapes1.length).to.not.be.equal(mixtapes2.length);
+                }
+            );
+        });
+
+        it('should search for single mixtape', function() {
+            return this.wl.getAllTracks({all: true, results: true, filters: {search: 'Get Mine Ft. Shakka'}}).then(function(tracks){
+                notNull(tracks);
+
+                expect(tracks).to.be.length(1);
+                expect(tracks[0].title).to.be.equal('Get Mine Ft. Shakka');
+            });
+        });
+
+        it('should filter tracks by mixtape', function() {
+            return P.join(
+                this.wl.getAllTracks({all: true, results: true}),
+                this.wl.getMixtapeTracks(MIXTAPE, {all: true, results: true}),
+                function(tracks1, tracks2) {
+                    notNull(tracks1);
+                    notNull(tracks2);
+
+                    expect(tracks1.length).to.not.be.equal(tracks2.length);
+                }
+            );
+        });
+
+        it('should filter tracks by ordering', function() {
+            return P.join(
+                this.wl.getMixtapeTracks(MIXTAPE, {all: true, results: true, filters: {ordering: 'artist'}}),
+                this.wl.getMixtapeTracks(MIXTAPE, {all: true, results: true}),
+                function(tracks1, tracks2) {
+                    notNull(tracks1);
+                    notNull(tracks2);
+
+                    expect(tracks1.length).to.be.equal(tracks2.length);
+                    expect(tracks1[0].slug).to.not.be.equal(tracks2[0].slug);
+                }
+            );
         });
     });
 });
