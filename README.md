@@ -35,6 +35,28 @@ wl.getMixtapeTracks("mixtape-slug", {results: true}).then(function(tracks) {
 });
 ```
 
+Get all mixtapes for a collection with slug "collection-slug" ordered by mixtape title descending.
+
+```javascript
+wl.getCollectionMixtapes("collection-slug", {
+    all: true, results: true, filters: {
+        ordering: "-title"
+    }
+});
+```
+
+Get array of all tracks from artist "Cool Artist"
+
+```javascript
+wl.getAllTracks({
+    results: true,
+    all: true,
+    filters: {
+        search: "Cool Artist"
+    } 
+});
+```
+
 Get array of first 20 Mixtape _responses_ in the collection with slug "collection-slug". _Note: each item in the array will contain a `count`, `next`, `previous` and `results` field_
 
 ```javascript
@@ -72,9 +94,11 @@ All of the methods use either the collection/mixtape/track `id` or `slug` as par
 
 [**API endpoint**](http://whitelabel.cool/docs/api/reference/#collections)
 
-[*Filters*](http://whitelabel.cool/docs/api/reference/#filters)
+[*Filters for this method*](http://whitelabel.cool/docs/api/reference/#filters)
 
 ### `getCollection(collection, options)`
+
+`collection` is a Collection id or slug.
 
 [**API endpoint**](http://whitelabel.cool/docs/api/reference/#collectionscollection)
 
@@ -82,15 +106,19 @@ All of the methods use either the collection/mixtape/track `id` or `slug` as par
 
 [**API endpoint**](http://whitelabel.cool/docs/api/reference/#mixtapes)
 
-[*Filters*](http://whitelabel.cool/docs/api/reference/#filters_1)
+[*Filters for this method*](http://whitelabel.cool/docs/api/reference/#filters_1)
 
 ### `getCollectionMixtapes(collection, options)`
 
+`collection` is a Collection id or slug.
+
 [**API endpoint**](http://whitelabel.cool/docs/api/reference/#mixtapes)
 
-[*Filters*](http://whitelabel.cool/docs/api/reference/#filters_1)
+[*Filters for this method*](http://whitelabel.cool/docs/api/reference/#filters_1)
 
 ### `getMixtape(mixtape, options)`
+
+`mixtape` is a Mixtape id or slug.
 
 [**API endpoint**](http://whitelabel.cool/docs/api/reference/#mixtapesmixtape)
 
@@ -98,19 +126,25 @@ All of the methods use either the collection/mixtape/track `id` or `slug` as par
 
 [**API endpoint**](http://whitelabel.cool/docs/api/reference/#tracks)
 
-[*Filters*](http://whitelabel.cool/docs/api/reference/#filters_2)
+[*Filters for this method*](http://whitelabel.cool/docs/api/reference/#filters_2)
 
 ### `getMixtapeTracks(mixtape, options)`
 
+`mixtape` is a Mixtape id or slug.
+
 [**API endpoint**](http://whitelabel.cool/docs/api/reference/#trackstrack)
 
-[*Filters*](http://whitelabel.cool/docs/api/reference/#filters_2)
+[*Filters for this method*](http://whitelabel.cool/docs/api/reference/#filters_2)
 
 ### `getTrack(track, options)`
+
+`track` is a Track id or slug.
 
 [**API endpoint**](http://whitelabel.cool/docs/api/reference/#trackstrack)
 
 ### `recordPlay(track)`
+
+`track` is a Track id or slug.
 
 [**API endpoint**](http://whitelabel.cool/docs/api/reference/#eventsplaystrack)
 
