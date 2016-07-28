@@ -1,6 +1,6 @@
 # WhiteLabel.js
 
-Create a music platform on the web with WhiteLabel.js
+Create a music platform on the web with whitelabel.js
 
 ## Usage
 
@@ -16,27 +16,6 @@ This will expose the global class `WhiteLabel`. After the page has been loaded, 
 ```javascript
 var wl = new WhiteLabel(CLIENT_ID);
 ```
-
-## Development
-
-To start contributing to this repository please follow these steps
-
-1. Clone this repo. `git clone https://github.com/NoonPacific/White-Label-JS.git`
-2. Navigate to cloned directory. `cd White-Label-JS`
-4. Install dependencies. `npm install`
-5. Copy `public/secrets_example.js` to `public/secrets.js` and fill in your `CLIENT_ID`
-6. Start the development server which watches the source directory. `npm run dev`
-7. In a new terminal tab start the testing server. This serves the current directory which is used for testing the library in the browser. `npm run sandbox`
-8. Navigate to [localhost:8080/public](http://localhost:8080/public) and open the developer console. You should see the results from the library.
-9. Run `npm run build` to create a minified file which is used for production. This can be found at `lib/whiteLabel.min.js`.
-
-All source files are in `src/` and generated JavaScript files to be used in the browser are in `lib/`. The source is built with [Webpack](https://webpack.github.io/) and uses mutliple [ES6](https://github.com/lukehoban/es6features) features as well as [ES7 Async/Await](http://rossboucher.com/await).
-
-## Tests
-
-Before running any tests you need to provide your White Label Client ID. Copy `public/secrets_example.js` to `public/secrets.js` and fill in your `CLIENT_ID`.
-
-Run tests with `npm test`. All tests are located in `test/` and are run with mocha and tested in phantomjs. `test/test.html` can be opened in the browser to run the tests against that specific browser.
 
 ## Examples
 
@@ -74,7 +53,8 @@ All requests take in an optional options object as the last parameter. Options h
 options = {
     page: 1,
     all: false,
-    results: false
+    results: false,
+    filters: {}
 }
 ```
 
@@ -82,6 +62,7 @@ options = {
 - **all**: Whether or not to recursively follow the next url in the response. If `page=1` and `all=true` then method will resolve with an array of all results from the collection.
 - **results**: If true, the method will resolve with `result.results` _(if exists)_ from the White Label API. This is useful if you just want a flat array of collections/mixtapes/tracks when requesting your Collections, Mixtapes, or Tracks.
     + If `all=true` and `results=true`, the method will return a flat array of all results from the requests endpoint.
+- **filters**: An object containing all white label filters to use with the API request. Common filters include [_ordering_](http://whitelabel.cool/docs/api/reference/#a-note-on-ordering) and _search_
 
 _To clarify what the results option does: In some responses from the White Label API, there is a `count`, `next`, `previous` and `results` field. If `results` is `true`, the method will only return what is in the `results` array._
 
@@ -89,36 +70,67 @@ All of the methods use either the collection/mixtape/track `id` or `slug` as par
 
 ### `getAllCollections(options)`
 
-[**API endpoint**](http://whitelabel.cool/docs/api/reference/#get-information-about-multiple-collections)
+[**API endpoint**](http://whitelabel.cool/docs/api/reference/#collections)
+
+[*Filters* for this API request can be found here](http://whitelabel.cool/docs/api/reference/#filters)
 
 ### `getCollection(collection, options)`
 
-[**API endpoint**](http://whitelabel.cool/docs/api/reference/#get-information-about-a-specific-collection)
-
-### `getCollectionMixtapes(collection, options)`
-
-[**API endpoint**](http://whitelabel.cool/docs/api/reference/#get-information-about-multiple-mixtapes)
+[**API endpoint**](http://whitelabel.cool/docs/api/reference/#collectionscollection)
 
 ### `getAllMixtapes(options)`
 
-[**API endpoint**](http://whitelabel.cool/docs/api/reference/#get-information-about-multiple-mixtapes)
+[**API endpoint**](http://whitelabel.cool/docs/api/reference/#mixtapes)
+
+[*Filters* for this API request can be found here](http://whitelabel.cool/docs/api/reference/#filters_1)
+
+### `getCollectionMixtapes(collection, options)`
+
+[**API endpoint**](http://whitelabel.cool/docs/api/reference/#mixtapes)
+
+[*Filters* for this API request can be found here](http://whitelabel.cool/docs/api/reference/#filters_1)
 
 ### `getMixtape(mixtape, options)`
 
-[**API endpoint**](http://whitelabel.cool/docs/api/reference/#get-information-about-a-specific-mixtape)
-
-### `getMixtapeTracks(mixtape, options)`
-
-[**API endpoint**](http://whitelabel.cool/docs/api/reference/#get-information-about-multiple-tracks)
+[**API endpoint**](http://whitelabel.cool/docs/api/reference/#mixtapesmixtape)
 
 ### `getAllTracks(options)`
 
-[**API endpoint**](http://whitelabel.cool/docs/api/reference/#get-information-about-multiple-tracks)
+[**API endpoint**](http://whitelabel.cool/docs/api/reference/#tracks)
+
+[*Filters* for this API request can be found here](http://whitelabel.cool/docs/api/reference/#filters_2)
+
+### `getMixtapeTracks(mixtape, options)`
+
+[**API endpoint**](http://whitelabel.cool/docs/api/reference/#trackstrack)
+
+[*Filters* for this API request can be found here](http://whitelabel.cool/docs/api/reference/#filters_2)
 
 ### `getTrack(track, options)`
 
-[**API endpoint**](http://whitelabel.cool/docs/api/reference/#get-information-about-a-specific-track)
+[**API endpoint**](http://whitelabel.cool/docs/api/reference/#trackstrack)
 
 ### `recordPlay(track)`
 
-[**API endpoint**](http://whitelabel.cool/docs/api/reference/#record-a-play-event)
+[**API endpoint**](http://whitelabel.cool/docs/api/reference/#eventsplaystrack)
+
+## Development
+
+To start contributing to this repository please follow these steps
+
+1. Clone this repo. `git clone https://github.com/NoonPacific/White-Label-JS.git`
+2. Navigate to cloned directory. `cd White-Label-JS`
+4. Install dependencies. `npm install`
+5. Copy `public/secrets_example.js` to `public/secrets.js` and fill in your `CLIENT_ID`
+6. Start the development server which watches the source directory. `npm run dev`
+7. In a new terminal tab start the testing server. This serves the current directory which is used for testing the library in the browser. `npm run sandbox`
+8. Navigate to [localhost:8080/public](http://localhost:8080/public) and open the developer console. You should see the results from the library.
+9. Run `npm run build` to create a minified file which is used for production. This can be found at `lib/whiteLabel.min.js`.
+
+All source files are in `src/` and generated JavaScript files to be used in the browser are in `lib/`. The source is built with [Webpack](https://webpack.github.io/) and uses mutliple [ES6](https://github.com/lukehoban/es6features) features as well as [ES7 Async/Await](http://rossboucher.com/await).
+
+## Tests
+
+Before running any tests you need to provide your White Label Client ID. Copy `public/secrets_example.js` to `public/secrets.js` and fill in your `CLIENT_ID`.
+
+Run tests with `npm test`. All tests are located in `test/` and are run with mocha and tested in phantomjs. `test/test.html` can be opened in the browser to run the tests against that specific browser.
