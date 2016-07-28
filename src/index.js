@@ -34,6 +34,7 @@ class WhiteLabelAPI {
         page: 1,
         all: false,
         results: false,
+        filters: {}
     }) {
         if (!options.filters) options.filters = {};
 
