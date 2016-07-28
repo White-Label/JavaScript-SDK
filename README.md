@@ -23,7 +23,8 @@ Getting array of all Mixtape objects in the collection with slug "collection-slu
 
 ```javascript
 wl.getCollectionMixtapes("collection-slug", {
-    all: true, results: true
+    all: true, 
+    results: true
 }).then(function(mixtapes) {
   // Do something with array of mixtapes
 });
@@ -43,9 +44,13 @@ Get all mixtapes for a collection with slug "collection-slug" ordered by mixtape
 
 ```javascript
 wl.getCollectionMixtapes("collection-slug", {
-    all: true, results: true, filters: {
+    all: true, 
+    results: true, 
+    filters: {
         ordering: "-title"
     }
+}).then(function(mixtapes) {
+    // Do something with array of mixtapes
 });
 ```
 
