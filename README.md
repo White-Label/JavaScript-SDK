@@ -1,4 +1,4 @@
-# WhiteLabel.js
+# whitelabel.js
 
 Create a music platform on the web with whitelabel.js
 
