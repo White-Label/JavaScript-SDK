@@ -22,7 +22,9 @@ var wl = new WhiteLabel(CLIENT_ID);
 Getting array of all Mixtape objects in the collection with slug "collection-slug"
 
 ```javascript
-wl.getCollectionMixtapes("collection-slug", {all: true, results: true}).then(function(mixtapes) {
+wl.getCollectionMixtapes("collection-slug", {
+    all: true, results: true
+}).then(function(mixtapes) {
   // Do something with array of mixtapes
 });
 ```
@@ -30,7 +32,9 @@ wl.getCollectionMixtapes("collection-slug", {all: true, results: true}).then(fun
 Get array of Track objects for mixtape with slug "mixtape-slug"
 
 ```javascript
-wl.getMixtapeTracks("mixtape-slug", {results: true}).then(function(tracks) {
+wl.getMixtapeTracks("mixtape-slug", {
+    results: true
+}).then(function(tracks) {
   // Do something with array of tracks
 });
 ```
