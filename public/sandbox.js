@@ -21,6 +21,7 @@ promiseTest('All Collections', wl.getAllCollections({
         search: 'weekly'
     }
 }));
+
 promiseTest('Single Collection', wl.getCollection(COLLECTION));
 promiseTest('All Mixtapes', wl.getAllMixtapes({all: true, results: true}));
 promiseTest('Collection Mixtapes', wl.getCollectionMixtapes(COLLECTION, {all: true, results: true}));
