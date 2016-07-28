@@ -72,7 +72,7 @@ All of the methods use either the collection/mixtape/track `id` or `slug` as par
 
 [**API endpoint**](http://whitelabel.cool/docs/api/reference/#collections)
 
-[*Filters* for this API request can be found here](http://whitelabel.cool/docs/api/reference/#filters)
+[*Filters*](http://whitelabel.cool/docs/api/reference/#filters)
 
 ### `getCollection(collection, options)`
 
@@ -82,13 +82,13 @@ All of the methods use either the collection/mixtape/track `id` or `slug` as par
 
 [**API endpoint**](http://whitelabel.cool/docs/api/reference/#mixtapes)
 
-[*Filters* for this API request can be found here](http://whitelabel.cool/docs/api/reference/#filters_1)
+[*Filters*](http://whitelabel.cool/docs/api/reference/#filters_1)
 
 ### `getCollectionMixtapes(collection, options)`
 
 [**API endpoint**](http://whitelabel.cool/docs/api/reference/#mixtapes)
 
-[*Filters* for this API request can be found here](http://whitelabel.cool/docs/api/reference/#filters_1)
+[*Filters*](http://whitelabel.cool/docs/api/reference/#filters_1)
 
 ### `getMixtape(mixtape, options)`
 
@@ -98,13 +98,13 @@ All of the methods use either the collection/mixtape/track `id` or `slug` as par
 
 [**API endpoint**](http://whitelabel.cool/docs/api/reference/#tracks)
 
-[*Filters* for this API request can be found here](http://whitelabel.cool/docs/api/reference/#filters_2)
+[*Filters*](http://whitelabel.cool/docs/api/reference/#filters_2)
 
 ### `getMixtapeTracks(mixtape, options)`
 
 [**API endpoint**](http://whitelabel.cool/docs/api/reference/#trackstrack)
 
-[*Filters* for this API request can be found here](http://whitelabel.cool/docs/api/reference/#filters_2)
+[*Filters*](http://whitelabel.cool/docs/api/reference/#filters_2)
 
 ### `getTrack(track, options)`
 
