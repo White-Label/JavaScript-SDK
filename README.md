@@ -63,6 +63,8 @@ wl.getAllTracks({
     filters: {
         search: "Cool Artist"
     } 
+}).then(function(tracks) {
+    // Do something with array of tracks    
 });
 ```
 
