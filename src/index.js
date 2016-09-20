@@ -117,7 +117,7 @@ class WhiteLabelAPI {
         return this.getFetch(this.MIXTAPES + mixtape, options);
     }
 
-    getLatestMixtap() {
+    getLatestMixtape() {
         return this.getFetch(this.LATEST_MIXTAPE);
     }
 

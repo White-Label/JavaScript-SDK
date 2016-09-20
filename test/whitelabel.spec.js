@@ -88,7 +88,7 @@ describe('White Label JS', function() {
         });
 
         it('should fetch latest mixtape', function() {
-            return this.wl.getLatestMixtap().then(function(mixtape) {
+            return this.wl.getLatestMixtape().then(function(mixtape) {
                 verifyObject(mixtape);
             });
         })
