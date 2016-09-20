@@ -1,4 +1,9 @@
 {
-  "presets": ["es2015", "stage-0"],
-  "plugins": ["add-module-exports", "babel-plugin-add-module-exports", "syntax-async-functions","transform-regenerator"]
+    "presets": ["es2015", "stage-0"],
+    "plugins": [
+        "add-module-exports",
+        "babel-plugin-add-module-exports",
+        "syntax-async-functions",
+        "transform-regenerator",
+    ]
 }

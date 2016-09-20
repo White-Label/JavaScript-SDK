@@ -21,11 +21,11 @@ if (env === 'build') {
     outputFile = libraryName.toLowerCase() + '.min.js';
 } else {
     outputFile = libraryName.toLowerCase() + '.js';
-    plugins.push(new WebpackNotifierPlugin())
+    plugins.push(new WebpackNotifierPlugin());
 }
 
-var config = {
-    entry: ['babel-polyfill', __dirname + source],
+const config = {
+    entry: [__dirname + source],
     devtool: env === 'build' ? '' : 'source-map',
     output: {
         path: __dirname + '/lib',
@@ -34,9 +34,6 @@ var config = {
         libraryTarget: 'umd',
         umdNamedDefine: true
     },
-    noParse: [
-        "axios"
-    ],
     externals: {},
     module: {
         loaders: [{
@@ -45,7 +42,7 @@ var config = {
             exclude: /(node_modules|bower_components)/
         }, {
             test: /(\.jsx|\.js)$/,
-            loader: "eslint-loader",
+            loader: 'eslint-loader',
             exclude: /node_modules/
         }]
     },
