@@ -9,6 +9,13 @@ var notNull = function(obj) {
     expect(obj).to.not.be.undefined;
 };
 
+var verifyObject = function(obj) {
+    notNull(obj);
+    expect(obj.slug).to.not.be.empty;
+    expect(obj.id).to.not.be.empty;
+    expect(obj.title).to.not.be.empty;
+}
+
 var randomArrIndex = function(arr) {
     return Math.floor(Math.random() * (arr.length - 0 + 1));
 };
@@ -45,18 +52,14 @@ describe('White Label JS', function() {
                 notNull(collections);
                 expect(collections).to.not.be.length(0);
                 collections.forEach(function(coll) {
-                    expect(coll.title).to.not.be.empty;
-                    expect(coll.id).to.not.be.empty;
-                    expect(coll.slug).to.not.be.empty;
+                    verifyObject(coll);
                 });
             });
         });
 
         it('should fetch single collection', function() {
             return this.wl.getCollection(COLLECTION).then(function(collection) {
-                notNull(collection);
-                expect(collection.id).to.not.be.empty;
-                expect(collection.slug).to.not.be.empty;
+                verifyObject(collection);
             });
         });
 
@@ -80,12 +83,15 @@ describe('White Label JS', function() {
 
         it('should fetch single mixtape', function() {
             return this.wl.getMixtape(MIXTAPE).then(function(mixtape) {
-                notNull(mixtape);
-                expect(mixtape.slug).to.not.be.empty;
-                expect(mixtape.id).to.not.be.empty;
-                expect(mixtape.title).to.not.be.empty;
+                verifyObject(mixtape);
             });
         });
+
+        it('should fetch latest mixtape', function() {
+            return this.wl.getLatestMixtap().then(function(mixtape) {
+                verifyObject(mixtape);
+            });
+        })
 
         it('should fetch all tracks', function() {
             return this.wl.getAllTracks({results: true}).then(function(tracks) {
@@ -103,10 +109,7 @@ describe('White Label JS', function() {
 
         it('should fetch single track', function() {
             return this.wl.getTrack(TRACK).then(function(track) {
-                notNull(track);
-                expect(track.id).to.not.be.empty;
-                expect(track.slug).to.not.be.empty;
-                expect(track.stream_url).to.not.be.empty;
+                verifyObject(track);
             });
         });
 
@@ -184,6 +187,7 @@ describe('White Label JS', function() {
 
                 expect(tracks).to.be.length(1);
                 expect(tracks[0].title).to.be.equal('Get Mine Ft. Shakka');
+                verifyObject(tracks[0]);
             });
         });
 

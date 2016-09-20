@@ -27,6 +27,7 @@ promiseTest('All Mixtapes', wl.getAllMixtapes({all: true, results: true}));
 promiseTest('Collection Mixtapes', wl.getCollectionMixtapes(COLLECTION, {all: true, results: true}));
 promiseTest('Collection Mixtapes', wl.getCollectionMixtapes(COLLECTION, {filters: {ordering: 'title'}}));
 promiseTest('Single Mixtape', wl.getMixtape(MIXTAPE));
+promiseTest('Latest Mixtape', wl.getLatestMixtap());
 promiseTest('All Tracks', wl.getAllTracks({all: true, results: true}));
 promiseTest('Mixtape Tracks', wl.getMixtapeTracks(MIXTAPE));
 promiseTest('Single Track', wl.getTrack(TRACK, {}));

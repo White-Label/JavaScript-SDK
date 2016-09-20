@@ -7,6 +7,7 @@ class WhiteLabelAPI {
         this.BASE_URL = 'https://beta.whitelabel.cool/api';
         this.COLLECTIONS = '/collections/';
         this.MIXTAPES = '/mixtapes/';
+        this.LATEST_MIXTAPE = '/mixtapes/latest/';
         this.TRACKS = '/tracks/';
         this.RECORD = '/events/plays/';
         this.CLIENT_ID = clientId;
@@ -25,6 +26,7 @@ class WhiteLabelAPI {
         });
     }
 
+    // Fix any double /'s that may occur when joining paths
     normalizePath(path) {
         return path.split('//').join('/');
     }
@@ -113,6 +115,10 @@ class WhiteLabelAPI {
 
     getMixtape(mixtape, options) {
         return this.getFetch(this.MIXTAPES + mixtape, options);
+    }
+
+    getLatestMixtap() {
+        return this.getFetch(this.LATEST_MIXTAPE);
     }
 
     getAllTracks(options) {
