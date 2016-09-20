@@ -8,7 +8,7 @@ Create a music platform on the web with whitelabel.js
 Include this script tag somewhere on the page.
 
 ```html
-<script src="whiteLabel.min.js"></script>
+<script src="whitelabel.min.js"></script>
 ```
 
 This will expose the global class `WhiteLabel`. After the page has been loaded, initialize an instance providing your White Label **client id**.
