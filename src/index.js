@@ -1,6 +1,5 @@
 import axios from 'axios';
 import merge from 'merge';
-import 'babel-polyfill';
 
 class WhiteLabelAPI {
     constructor(clientId) {

@@ -14,7 +14,10 @@ var plugins = [],
 
 if (env === 'build') {
     plugins.push(new UglifyJsPlugin({
-        minimize: true
+        minimize: true,
+        compress: {
+            warnings: false
+        }
     }));
     plugins.push(new OccurrenceOrderPlugin());
     plugins.push(new DedupePlugin());
@@ -25,10 +28,10 @@ if (env === 'build') {
 }
 
 const config = {
-    entry: [__dirname + source],
-    devtool: env === 'build' ? '' : 'source-map',
+    entry: ['babel-polyfill', __dirname + source],
+    devtool: 'source-map',
     output: {
-        path: __dirname + '/lib',
+        path: __dirname + '/browser',
         filename: outputFile,
         library: libraryName,
         libraryTarget: 'umd',
