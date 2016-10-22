@@ -31,6 +31,8 @@ var WhiteLabel = require('white-label-js');
 var wl = new WhiteLabel(CLIENT_ID);
 ```
 
+_This library requires the `regeneratorRuntime` method to be available. It is available in ES6 but can be loaded by using the [babel-polyfill](https://babeljs.io/docs/usage/polyfill/)._
+
 ## Examples
 
 Getting array of all Mixtape objects in the collection with slug "collection-slug"
