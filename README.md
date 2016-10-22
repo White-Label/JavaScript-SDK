@@ -13,7 +13,7 @@ This library is available as an npm package or UMD module.
 Include this script tag somewhere on the page.
 
 ```html
-<script src="https://unpkg.com/white-label-js@1.0.0/browser/whitelabel.min.js"></script>
+<script src="https://unpkg.com/white-label-js"></script>
 ```
 
 This will expose the global class `WhiteLabel`. After the page has been loaded, initialize an instance providing your White Label **client id**.
