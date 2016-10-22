@@ -1,19 +1,33 @@
 # whitelabel.js
 
+[![npm version](https://badge.fury.io/js/white-label-js.svg)](https://badge.fury.io/js/white-label-js)
+
 Create a music platform on the web with whitelabel.js
 
 ## Usage
 
-[Download the minified library](https://raw.githubusercontent.com/NoonPacific/White-Label-JS/master/lib/whitelabel.min.js?token=AC519TlDRq76HvWecpK3oa8Bu4xlyULzks5XpkqiwA%3D%3D).
+This library is available as an npm package or UMD module.
+
+### UMD module for Browser
+
 Include this script tag somewhere on the page.
 
 ```html
-<script src="whitelabel.min.js"></script>
+<script src="https://unpkg.com/white-label-js@1.0.0/browser/whitelabel.min.js"></script>
 ```
 
 This will expose the global class `WhiteLabel`. After the page has been loaded, initialize an instance providing your White Label **client id**.
 
 ```javascript
+var wl = new WhiteLabel(CLIENT_ID);
+```
+
+### NPM Library
+
+`npm i --save white-label-js`
+
+```javascript
+var WhiteLabel = require('white-label-js');
 var wl = new WhiteLabel(CLIENT_ID);
 ```
 
