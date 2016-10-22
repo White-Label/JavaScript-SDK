@@ -163,14 +163,15 @@ All of the methods use either the collection/mixtape/track `id` or `slug` as par
 
 To start contributing to this repository please follow these steps
 
-1. Clone this repo. `git clone https://github.com/NoonPacific/White-Label-JS.git`
-2. Navigate to cloned directory. `cd White-Label-JS`
-4. Install dependencies. `npm install`
-5. Copy `public/secrets_example.js` to `public/secrets.js` and fill in your `CLIENT_ID`
-6. Start the development server which watches the source directory. `npm run dev`
-7. In a new terminal tab start the testing server. This serves the current directory which is used for testing the library in the browser. `npm run sandbox`
-8. Navigate to [localhost:8080/public](http://localhost:8080/public) and open the developer console. You should see the results from the library.
-9. Run `npm run build` to create a minified file which is used for production. This can be found at `lib/whiteLabel.min.js`.
+1. Ensure you have [`yarn`](https://github.com/yarnpkg/yarn) installed globally. `npm i -g yarn`
+2. Clone this repo. `git clone https://github.com/NoonPacific/White-Label-JS.git`
+3. Navigate to cloned directory. `cd White-Label-JS`
+5. Install dependencies. `npm install`
+6. Copy `public/secrets_example.js` to `public/secrets.js` and fill in your `CLIENT_ID`
+7. Start the development server which watches the source directory. `npm run dev`
+8. In a new terminal tab start the testing server. This serves the current directory which is used for testing the library in the browser. `npm run sandbox`
+9. Navigate to [localhost:8080/public](http://localhost:8080/public) and open the developer console. You should see the results from the library.
+10. Run `npm run build` to create a minified file which is used for production. This can be found at `lib/whiteLabel.min.js`.
 
 All source files are in `src/` and generated JavaScript files to be used in the browser are in `lib/`. The source is built with [Webpack](https://webpack.github.io/) and uses mutliple [ES6](https://github.com/lukehoban/es6features) features as well as [ES7 Async/Await](http://rossboucher.com/await).
 
