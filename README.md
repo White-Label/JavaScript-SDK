@@ -193,9 +193,10 @@ To start contributing to this repository please follow these steps
 7. Start the development server which watches the source directory. `npm run dev`
 8. In a new terminal tab start the testing server. This serves the current directory which is used for testing the library in the browser. `npm run sandbox`
 9. Navigate to [localhost:8080/public](http://localhost:8080/public) and open the developer console. You should see the results from the library.
-10. Run `npm run build` to create a minified file which is used for production. This can be found at `lib/whiteLabel.min.js`.
+10. Run `npm run build` to create a minified file which is used for production. This can be found at `browser/whiteLabel.min.js`.
+11. Run `npm run build-npm` to create an ES5 compatible module to be used with npm found in `lib/`.
 
-All source files are in `src/` and generated JavaScript files to be used in the browser are in `lib/`. The source is built with [Webpack](https://webpack.github.io/) and uses mutliple [ES6](https://github.com/lukehoban/es6features) features as well as [ES7 Async/Await](http://rossboucher.com/await).
+All source files are in `src/`. Browser ready files are in `browser/` and the npm main entry is found in `lib/`. The source is built with [Webpack](https://webpack.github.io/) and uses mutliple [ES6](https://github.com/lukehoban/es6features) features as well as [ES7 Async/Await](http://rossboucher.com/await).
 
 ## Tests
 
