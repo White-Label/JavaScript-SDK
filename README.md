@@ -182,7 +182,7 @@ To start contributing to this repository please follow these steps
 1. Ensure you have [`yarn`](https://github.com/yarnpkg/yarn) installed globally. `npm i -g yarn`
 2. Clone this repo. `git clone https://github.com/NoonPacific/White-Label-JS.git`
 3. Navigate to cloned directory. `cd White-Label-JS`
-5. Install dependencies. `npm install`
+5. Install dependencies. `yarn install`
 6. Copy `public/secrets_example.js` to `public/secrets.js` and fill in your `CLIENT_ID`
 7. Start the development server which watches the source directory. `npm run dev`
 8. In a new terminal tab start the testing server. This serves the current directory which is used for testing the library in the browser. `npm run sandbox`
