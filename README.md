@@ -149,6 +149,12 @@ All of the methods use either the collection/mixtape/track `id` or `slug` as par
 
 [**API endpoint**](http://whitelabel.cool/docs/api/reference/#mixtapesmixtape)
 
+### `getLatestMixtape()`
+
+Retrieve the most recently published Mixtape object.
+
+[**API endpoint**](http://whitelabel.cool/docs/api/reference/#mixtapeslatest)
+
 ### `getAllTracks(options)`
 
 [**API endpoint**](http://whitelabel.cool/docs/api/reference/#tracks)
