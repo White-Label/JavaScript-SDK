@@ -1,6 +1,6 @@
 # whitelabel.js
 
-[![npm version](https://badge.fury.io/js/white-label-js.svg)](https://badge.fury.io/js/white-label-js)
+[![NPM](https://nodei.co/npm/white-label-js.png?downloads=true&stars=true)](https://nodei.co/npm/white-label-js/)
 
 Create a music platform on the web with whitelabel.js
 
