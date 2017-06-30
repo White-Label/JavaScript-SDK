@@ -10,7 +10,7 @@
     "build-browser": "webpack --mode=build",
     "build-npm": "babel src/index.js --out-file lib/whitelabel.js --source-maps inline",
     "sandbox": "node liveserver.js",
-    "test": "mocha-phantomjs --ssl-protocol=any test/test.html"
+    "test": "mocha-phantomjs -p ./node_modules/phantomjs/bin/phantomjs --ssl-protocol=any test/test.html"
   },
   "dependencies": {
     "axios": "^0.15.2",
@@ -35,6 +35,7 @@
     "live-server": "^1.0.0",
     "mocha": "^3.1.2",
     "mocha-phantomjs": "^4.0.2",
+    "phantomjs": "^2.1.7",
     "prettier": "^1.5.2",
     "webpack": "1.13.2",
     "webpack-notifier": "^1.3.0",
