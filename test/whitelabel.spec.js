@@ -1,154 +1,155 @@
-var expect = chai.expect;
+const WhiteLabel = require('../lib/whitelabel.js');
+const { CLIENT_ID } = require('../src/secrets.js');
+const P = require('bluebird');
 
 var COLLECTION = 'weekly';
 var MIXTAPE = 'noon-186';
 var TRACK = 'gallant-episode';
 
+let wl;
+
 var notNull = function(obj) {
-    expect(obj).to.not.be.null;
-    expect(obj).to.not.be.undefined;
+    expect(obj).not.toBeNull();
+    expect(obj).toBeDefined();
 };
 
 var verifyObject = function(obj) {
     notNull(obj);
-    expect(obj.slug).to.not.be.empty;
-    expect(obj.id).to.not.be.empty;
-    expect(obj.title).to.not.be.empty;
+    expect(obj.slug).not.toHaveLength(0);
+    expect(obj.id).not.toHaveLength(0);
+    expect(obj.title).not.toHaveLength(0);
 };
 
-var randomArrIndex = function(arr) {
-    return Math.floor(Math.random() * (arr.length - 0 + 1));
-};
+beforeAll(() => {
+    wl = new WhiteLabel(CLIENT_ID);
+});
 
 describe('White Label JS', function() {
-    this.timeout(40000);
-    it('should error with invalid token', function() {
+    test('should error with invalid token', function() {
         try {
             var wl = new WhiteLabel();
             fail(
                 'Creating a new WhiteLabel object without client id should throw an error'
             );
         } catch (e) {
-            expect(e).to.not.be.null;
+            expect(e).not.toBeNull();
         }
     });
 
-    it('should not error with valid token', function() {
+    test('should not error with valid token', function() {
         var wl = new WhiteLabel(CLIENT_ID);
         notNull(wl);
     });
 
     describe('White Label APIs', function() {
         beforeEach(function() {
-            this.wl = new WhiteLabel(CLIENT_ID);
+            wl = new WhiteLabel(CLIENT_ID);
         });
 
-        it('should fetch collections', function() {
-            return this.wl.getAllCollections().then(function(collections) {
+        test('should fetch collections', function() {
+            return wl.getAllCollections().then(function(collections) {
                 notNull(collections);
             });
         });
 
-        it('should fetch all result collections', function() {
-            return this.wl
+        test('should fetch all result collections', function() {
+            return wl
                 .getAllCollections({ results: true, all: true })
                 .then(function(collections) {
                     notNull(collections);
-                    expect(collections).to.not.be.length(0);
+                    expect(collections).not.toHaveLength(0);
                     collections.forEach(function(coll) {
                         verifyObject(coll);
                     });
                 });
         });
 
-        it('should fetch single collection', function() {
-            return this.wl.getCollection(COLLECTION).then(function(collection) {
+        test('should fetch single collection', function() {
+            return wl.getCollection(COLLECTION).then(function(collection) {
                 verifyObject(collection);
             });
         });
 
-        it('should fetch all mixtapes', function() {
-            return this.wl.getAllMixtapes().then(function(mixtapes) {
+        test('should fetch all mixtapes', function() {
+            return wl.getAllMixtapes().then(function(mixtapes) {
                 notNull(mixtapes);
             });
         });
 
-        it('should fetch collection mixtapes', function() {
-            return this.wl
+        test('should fetch collection mixtapes', function() {
+            return wl
                 .getCollectionMixtapes(COLLECTION)
                 .then(function(mixtapes) {
                     notNull(mixtapes);
                 });
         });
 
-        it('should fetch all collection mixtapes', function() {
-            return this.wl
+        test('should fetch all collection mixtapes', function() {
+            return wl
                 .getCollectionMixtapes(COLLECTION, { results: true, all: true })
                 .then(function(mixtapes) {
-                    expect(mixtapes.length > 20).to.be.true;
+                    expect(mixtapes.length > 20).toBe(true);
                 });
         });
 
-        it('should fetch single mixtape', function() {
-            return this.wl.getMixtape(MIXTAPE).then(function(mixtape) {
+        test('should fetch single mixtape', function() {
+            return wl.getMixtape(MIXTAPE).then(function(mixtape) {
                 verifyObject(mixtape);
             });
         });
 
-        it('should fetch latest mixtape', function() {
-            return this.wl.getLatestMixtape().then(function(mixtape) {
+        test('should fetch latest mixtape', function() {
+            return wl.getLatestMixtape().then(function(mixtape) {
                 verifyObject(mixtape);
             });
         });
 
-        it('should fetch all tracks', function() {
-            return this.wl
-                .getAllTracks({ results: true })
-                .then(function(tracks) {
-                    notNull(tracks);
-                    expect(tracks).to.not.be.length(0);
-                });
+        test('should fetch all tracks', function() {
+            return wl.getAllTracks({ results: true }).then(function(tracks) {
+                notNull(tracks);
+                expect(tracks).not.toHaveLength(0);
+            });
         });
 
-        it('should fetch mixtape tracks', function() {
-            return this.wl
+        test('should fetch mixtape tracks', function() {
+            return wl
                 .getMixtapeTracks(MIXTAPE, { results: true })
                 .then(function(tracks) {
                     notNull(tracks);
-                    expect(tracks).to.not.be.length(0);
+                    expect(tracks).not.toHaveLength(0);
                 });
         });
 
-        it('should fetch single track', function() {
-            return this.wl.getTrack(TRACK).then(function(track) {
+        test('should fetch single track', function() {
+            return wl.getTrack(TRACK).then(function(track) {
                 verifyObject(track);
             });
         });
 
-        it('should return an array of tracks', function() {
-            return this.wl.getTrack(TRACK, { all: true }).then(function(track) {
+        test('should return an array of tracks', function() {
+            return wl.getTrack(TRACK, { all: true }).then(function(track) {
                 notNull(track);
-                expect(track).to.be.length(1);
+                expect(track).toHaveLength(1);
             });
         });
 
-        it('should record play', function() {
-            return this.wl.recordPlay(TRACK);
+        test('should record play', function() {
+            return wl.recordPlay(TRACK);
         });
     });
 
     describe('White Label Filtering', function() {
         beforeEach(function() {
-            this.wl = new WhiteLabel(CLIENT_ID);
+            wl = new WhiteLabel(CLIENT_ID);
         });
 
-        it('should filter collections by ordering', function() {
+        test('should filter collections by ordering', function() {
             return P.join(
-                this.wl.getAllCollections({
+                wl.getAllCollections({
                     results: true,
                     filters: { ordering: '-created' }
                 }),
-                this.wl.getAllCollections({
+                wl.getAllCollections({
                     results: true,
                     filters: { ordering: 'created' }
                 }),
@@ -156,18 +157,14 @@ describe('White Label JS', function() {
                     notNull(collections1);
                     notNull(collections2);
 
-                    expect(collections1.length).to.be.equal(
-                        collections2.length
-                    );
-                    expect(collections1[0].slug).to.not.be.equal(
-                        collections2[0].slug
-                    );
+                    expect(collections1.length).toBe(collections2.length);
+                    expect(collections1[0].slug).not.toBe(collections2[0].slug);
                 }
             );
         });
 
-        it('should search for single collection', function() {
-            return this.wl
+        test('should search for single collection', function() {
+            return wl
                 .getAllCollections({
                     results: true,
                     filters: { search: 'weekly' }
@@ -175,15 +172,15 @@ describe('White Label JS', function() {
                 .then(function(collections) {
                     notNull(collections);
 
-                    expect(collections).to.be.length(1);
-                    expect(collections[0].slug).to.be.equal('weekly');
+                    expect(collections).toHaveLength(1);
+                    expect(collections[0].slug).toBe('weekly');
                 });
         });
 
-        it('should filter mixtapes by collection', function() {
+        test('should filter mixtapes by collection', function() {
             return P.join(
-                this.wl.getAllMixtapes({ all: true, results: true }),
-                this.wl.getCollectionMixtapes(COLLECTION, {
+                wl.getAllMixtapes({ all: true, results: true }),
+                wl.getCollectionMixtapes(COLLECTION, {
                     all: true,
                     results: true
                 }),
@@ -191,19 +188,19 @@ describe('White Label JS', function() {
                     notNull(mixtapes1);
                     notNull(mixtapes2);
 
-                    expect(mixtapes1.length).to.not.be.equal(mixtapes2.length);
+                    expect(mixtapes1.length).not.toBe(mixtapes2.length);
                 }
             );
         });
 
-        it('should filter mixtapes with method', function() {
+        test('should filter mixtapes with method', function() {
             return P.join(
-                this.wl.getAllMixtapes({
+                wl.getAllMixtapes({
                     all: true,
                     results: true,
                     filters: { collection: COLLECTION }
                 }),
-                this.wl.getCollectionMixtapes(COLLECTION, {
+                wl.getCollectionMixtapes(COLLECTION, {
                     all: true,
                     results: true
                 }),
@@ -211,21 +208,17 @@ describe('White Label JS', function() {
                     notNull(collections1);
                     notNull(collections2);
 
-                    expect(collections1.length).to.be.equal(
-                        collections2.length
+                    expect(collections1.length).toBe(collections2.length);
+                    expect(collections1[0].slug).toBe(collections2[0].slug);
+                    expect(collections1[collections1.length - 1].slug).toBe(
+                        collections2[collections2.length - 1].slug
                     );
-                    expect(collections1[0].slug).to.be.equal(
-                        collections2[0].slug
-                    );
-                    expect(
-                        collections1[collections1.length - 1].slug
-                    ).to.be.equal(collections2[collections2.length - 1].slug);
                 }
             );
         });
 
-        it('should search for single mixtape', function() {
-            return this.wl
+        test('should search for single mixtape', function() {
+            return wl
                 .getAllTracks({
                     all: true,
                     results: true,
@@ -234,39 +227,39 @@ describe('White Label JS', function() {
                 .then(function(tracks) {
                     notNull(tracks);
 
-                    expect(tracks).to.be.length(1);
-                    expect(tracks[0].title).to.be.equal('Get Mine Ft. Shakka');
+                    expect(tracks).toHaveLength(1);
+                    expect(tracks[0].title).toBe('Get Mine Ft. Shakka');
                     verifyObject(tracks[0]);
                 });
         });
 
-        it('should filter tracks by mixtape', function() {
+        test('should filter tracks by mixtape', function() {
             return P.join(
-                this.wl.getAllTracks({ all: true, results: true }),
-                this.wl.getMixtapeTracks(MIXTAPE, { all: true, results: true }),
+                wl.getAllTracks({ all: true, results: true }),
+                wl.getMixtapeTracks(MIXTAPE, { all: true, results: true }),
                 function(tracks1, tracks2) {
                     notNull(tracks1);
                     notNull(tracks2);
 
-                    expect(tracks1.length).to.not.be.equal(tracks2.length);
+                    expect(tracks1.length).not.toBe(tracks2.length);
                 }
             );
         });
 
-        it('should filter tracks by ordering', function() {
+        test('should filter tracks by ordering', function() {
             return P.join(
-                this.wl.getMixtapeTracks(MIXTAPE, {
+                wl.getMixtapeTracks(MIXTAPE, {
                     all: true,
                     results: true,
                     filters: { ordering: 'artist' }
                 }),
-                this.wl.getMixtapeTracks(MIXTAPE, { all: true, results: true }),
+                wl.getMixtapeTracks(MIXTAPE, { all: true, results: true }),
                 function(tracks1, tracks2) {
                     notNull(tracks1);
                     notNull(tracks2);
 
-                    expect(tracks1.length).to.be.equal(tracks2.length);
-                    expect(tracks1[0].slug).to.not.be.equal(tracks2[0].slug);
+                    expect(tracks1.length).toBe(tracks2.length);
+                    expect(tracks1[0].slug).not.toBe(tracks2[0].slug);
                 }
             );
         });
