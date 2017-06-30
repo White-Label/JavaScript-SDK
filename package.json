@@ -10,7 +10,8 @@
     "build-browser": "webpack --mode=build",
     "build-npm": "babel src/index.js --out-file lib/whitelabel.js --source-maps inline",
     "sandbox": "node liveserver.js",
-    "test": "mocha-phantomjs -p ./node_modules/phantomjs/bin/phantomjs --ssl-protocol=any test/test.html"
+    "test": "mocha-phantomjs -p ./node_modules/phantomjs/bin/phantomjs --ssl-protocol=any test/test.html",
+    "test-browser": "open test/test.html"
   },
   "dependencies": {
     "axios": "^0.15.2",
