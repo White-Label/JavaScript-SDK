@@ -20,9 +20,9 @@ class WhiteLabelAPI {
             baseURL: this.BASE_URL,
             timeout: 10000,
             headers: {
-                'Accept': 'application/json; version=1.0',
-                'Client': clientId,
-            },
+                Accept: 'application/json; version=1.0',
+                Client: clientId
+            }
         });
     }
 
@@ -32,17 +32,20 @@ class WhiteLabelAPI {
     }
 
     // ES7 async and await 🔥
-    async getFetch(path, options = {
-        page: 1,
-        all: false,
-        results: false,
-        filters: {}
-    }) {
+    async getFetch(
+        path,
+        options = {
+            page: 1,
+            all: false,
+            results: false,
+            filters: {}
+        }
+    ) {
         if (!options.filters) options.filters = {};
 
         let results = [];
         const config = {
-            params: merge({page: options.page}, options.filters)
+            params: merge({ page: options.page }, options.filters)
         };
 
         // Throws an error if the request was unsuccessful
@@ -53,7 +56,10 @@ class WhiteLabelAPI {
             }
         };
 
-        let response = await this.request.get(this.normalizePath(path + '/'), config);
+        let response = await this.request.get(
+            this.normalizePath(path + '/'),
+            config
+        );
         checkSuccess(response);
 
         response = response.data;
@@ -81,12 +87,17 @@ class WhiteLabelAPI {
             if (options.all) {
                 let flattened = false;
                 const mappedResults = returnResults.map(function(obj) {
-                    flattened = (obj.results !== undefined && obj.results !== null);
+                    flattened =
+                        obj.results !== undefined && obj.results !== null;
                     return obj.results ? obj.results : obj;
                 });
-                returnResults = flattened ? [].concat(...mappedResults) : mappedResults;
+                returnResults = flattened
+                    ? [].concat(...mappedResults)
+                    : mappedResults;
             } else {
-                returnResults = returnResults.results ? returnResults.results : returnResults;
+                returnResults = returnResults.results
+                    ? returnResults.results
+                    : returnResults;
             }
         }
         return returnResults;
